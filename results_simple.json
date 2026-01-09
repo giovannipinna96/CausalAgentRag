@@ -1,0 +1,198 @@
+{
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "mode": "simple",
+  "results": [
+    {
+      "query_id": "q1",
+      "query": "Find patients with hepatitis B infection",
+      "predicted_columns": [
+        "hbsag",
+        "hbsag_anti",
+        "RHepatitis",
+        "THepatitis",
+        "PBC",
+        "fibrosis",
+        "hepatotoxic",
+        "alcoholism",
+        "injections"
+      ]
+    },
+    {
+      "query_id": "q2",
+      "query": "Analyze liver enzyme levels",
+      "predicted_columns": [
+        "alt",
+        "ast",
+        "ggtp",
+        "bilirubin",
+        "albumin",
+        "cholesterol",
+        "amylase",
+        "carcinoma",
+        "hcv_anti",
+        "hbc_anti"
+      ]
+    },
+    {
+      "query_id": "q3",
+      "query": "Find patients at risk of cirrhosis based on alcohol consumption",
+      "predicted_columns": [
+        "alcoholism",
+        "alcohol",
+        "Cirrhosis"
+      ]
+    },
+    {
+      "query_id": "q4",
+      "query": "Identify symptoms of bile duct obstruction",
+      "predicted_columns": [
+        "jaundice",
+        "itching",
+        "upper_pain",
+        "pain_ruq",
+        "pressure_ruq",
+        "ascites",
+        "hepatomegaly",
+        "hepatalgia",
+        "density",
+        "spiders"
+      ]
+    },
+    {
+      "query_id": "q5",
+      "query": "Evaluate liver synthetic function",
+      "predicted_columns": [
+        "alt",
+        "ast",
+        "albumin",
+        "ggtp",
+        "bilirubin",
+        "proteins",
+        "cholesterol",
+        "nausea",
+        "jaundice",
+        "ascites"
+      ]
+    },
+    {
+      "query_id": "q6",
+      "query": "Find patients with fatty liver disease",
+      "predicted_columns": [
+        "Steatosis",
+        "fat",
+        "fatigue",
+        "pain_ruq",
+        "ascites",
+        "hepatomegaly",
+        "albumin",
+        "alt",
+        "ast"
+      ]
+    },
+    {
+      "query_id": "q7",
+      "query": "Detect signs of portal hypertension",
+      "predicted_columns": [
+        "ascites",
+        "hepatomegaly",
+        "spleen",
+        "jaundice",
+        "edema"
+      ]
+    },
+    {
+      "query_id": "q8",
+      "query": "Identify autoimmune liver disease markers",
+      "predicted_columns": [
+        "PBC",
+        "RHepatitis"
+      ]
+    },
+    {
+      "query_id": "q9",
+      "query": "Assess hepatic encephalopathy risk",
+      "predicted_columns": [
+        "encephalopathy",
+        "diabetes",
+        "obesity",
+        "fibrosis",
+        "amylase",
+        "cholesterol",
+        "albumin",
+        "proteins"
+      ]
+    },
+    {
+      "query_id": "q10",
+      "query": "Find viral hepatitis risk factors from patient history",
+      "predicted_columns": [
+        "THepatitis",
+        "ChHepatitis",
+        "PBC"
+      ]
+    },
+    {
+      "query_id": "q11",
+      "query": "Evaluate cholestatic liver disease",
+      "predicted_columns": [
+        "cholesterol",
+        "bilirubin",
+        "ast",
+        "alt",
+        "ggtp"
+      ]
+    },
+    {
+      "query_id": "q12",
+      "query": "Find patients with hepatocellular carcinoma risk",
+      "predicted_columns": [
+        "RHepatitis",
+        "carcinoma"
+      ]
+    },
+    {
+      "query_id": "q13",
+      "query": "Identify drug-induced liver injury",
+      "predicted_columns": [
+        "hepatotoxic",
+        "THepatitis",
+        "ChHepatitis",
+        "PBC",
+        "fibrosis",
+        "alcoholism",
+        "injections",
+        "transfusion",
+        "injections"
+      ]
+    },
+    {
+      "query_id": "q14",
+      "query": "Evaluate patient with jaundice",
+      "predicted_columns": [
+        "jaundice",
+        "hepatotoxic",
+        "hepatomegaly",
+        "bilirubin",
+        "ast",
+        "alt",
+        "albumin"
+      ]
+    },
+    {
+      "query_id": "q15",
+      "query": "Find patients with hepatomegaly and abdominal symptoms",
+      "predicted_columns": [
+        "hepatomegaly",
+        "pain_ruq",
+        "pressure_ruq",
+        "pain",
+        "jaundice",
+        "ascites",
+        "edema",
+        "spleen",
+        "upper_pain",
+        "pain_ruq"
+      ]
+    }
+  ]
+}
