@@ -54,6 +54,8 @@ class QueryMetrics:
     true_positives: list[str]
     false_positives: list[str]
     false_negatives: list[str]
+    # New classification metrics
+    classification: str  # "correct", "partial", "wrong"
 
 
 @dataclass
@@ -70,6 +72,10 @@ class AggregateMetrics:
     std_recall: float
     std_f1_score: float
     std_jaccard: float
+    # New classification counts
+    num_correct: int  # Exact match (predicted == gold_columns)
+    num_partial: int  # All gold found but extra columns (recall=1.0, precision<1.0)
+    num_wrong: int  # Missing at least 1 gold column (recall<1.0)
 
 
 def compute_precision(predicted: set, expected: set) -> float:
@@ -154,6 +160,29 @@ def compute_exact_match(predicted: set, expected: set) -> bool:
     return predicted == expected
 
 
+def classify_prediction(predicted_set: set, expected_set: set) -> str:
+    """
+    Classify prediction into correct, partial, or wrong.
+
+    Args:
+        predicted_set: Set of predicted columns
+        expected_set: Set of expected columns
+
+    Returns:
+        "correct": Exact match (predicted == expected)
+        "partial": All expected found but extra columns (recall=1.0, precision<1.0)
+        "wrong": Missing at least 1 expected column (recall<1.0)
+    """
+    if predicted_set == expected_set:
+        return "correct"
+    elif expected_set.issubset(predicted_set):
+        # All gold columns found, but extra columns predicted
+        return "partial"
+    else:
+        # Missing at least 1 gold column
+        return "wrong"
+
+
 def evaluate_query(
     query_id: str,
     query: str,
@@ -187,6 +216,9 @@ def evaluate_query(
     false_positives = list(predicted_set - expected_set)
     false_negatives = list(expected_set - predicted_set)
 
+    # Classify prediction
+    classification = classify_prediction(predicted_set, expected_set)
+
     return QueryMetrics(
         query_id=query_id,
         query=query,
@@ -200,6 +232,7 @@ def evaluate_query(
         true_positives=sorted(true_positives),
         false_positives=sorted(false_positives),
         false_negatives=sorted(false_negatives),
+        classification=classification,
     )
 
 
@@ -231,6 +264,11 @@ def compute_aggregate_metrics(query_metrics: list[QueryMetrics]) -> AggregateMet
     std_f1 = statistics.stdev(f1_scores) if n > 1 else 0.0
     std_jaccard = statistics.stdev(jaccards) if n > 1 else 0.0
 
+    # Count classifications
+    num_correct = sum(1 for m in query_metrics if m.classification == "correct")
+    num_partial = sum(1 for m in query_metrics if m.classification == "partial")
+    num_wrong = sum(1 for m in query_metrics if m.classification == "wrong")
+
     return AggregateMetrics(
         num_queries=n,
         mean_precision=statistics.mean(precisions),
@@ -242,6 +280,9 @@ def compute_aggregate_metrics(query_metrics: list[QueryMetrics]) -> AggregateMet
         std_recall=std_recall,
         std_f1_score=std_f1,
         std_jaccard=std_jaccard,
+        num_correct=num_correct,
+        num_partial=num_partial,
+        num_wrong=num_wrong,
     )
 
 
@@ -333,11 +374,14 @@ def evaluate_predictions(
 
         bench_query = benchmark_lookup[query_id]
 
+        # Support both formats: expected_columns (v1) and gold_columns (v3)
+        expected_columns = bench_query.get("expected_columns") or bench_query.get("gold_columns", [])
+
         metrics = evaluate_query(
             query_id=query_id,
             query=pred["query"],
             predicted_columns=pred["predicted_columns"],
-            expected_columns=bench_query["expected_columns"],
+            expected_columns=expected_columns,
         )
         query_metrics.append(metrics)
 
@@ -372,6 +416,14 @@ def print_results(
     print(f"Mode: {predictions_meta.get('mode', 'N/A')}")
     print(f"Queries Evaluated: {aggregate.num_queries}")
 
+    # Print classification summary
+    print("\n" + "-" * 70)
+    print("CLASSIFICATION SUMMARY")
+    print("-" * 70)
+    print(f"{'Correct (exact match):':<30} {aggregate.num_correct:>5}/{aggregate.num_queries} ({100*aggregate.num_correct/aggregate.num_queries:.1f}%)")
+    print(f"{'Partial (all gold + extra):':<30} {aggregate.num_partial:>5}/{aggregate.num_queries} ({100*aggregate.num_partial/aggregate.num_queries:.1f}%)")
+    print(f"{'Wrong (missing gold cols):':<30} {aggregate.num_wrong:>5}/{aggregate.num_queries} ({100*aggregate.num_wrong/aggregate.num_queries:.1f}%)")
+
     # Print aggregate metrics
     print("\n" + "-" * 70)
     print("AGGREGATE METRICS")
@@ -390,9 +442,16 @@ def print_results(
         print("-" * 70)
 
         for m in query_metrics:
-            print(f"\n[{m.query_id}] {m.query}")
+            # Classification indicator
+            if m.classification == "correct":
+                indicator = "[CORRECT]"
+            elif m.classification == "partial":
+                indicator = "[PARTIAL]"
+            else:
+                indicator = "[WRONG]"
+
+            print(f"\n{indicator} [{m.query_id}] {m.query}")
             print(f"  Precision: {m.precision:.4f}, Recall: {m.recall:.4f}, F1: {m.f1_score:.4f}, Jaccard: {m.jaccard:.4f}")
-            print(f"  Exact Match: {m.exact_match}")
             print(f"  Predicted: {m.predicted_columns}")
             print(f"  Expected:  {m.expected_columns}")
             if m.true_positives:

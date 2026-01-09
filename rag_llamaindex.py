@@ -15,11 +15,17 @@ Prerequisites:
     - HuggingFace transformers and accelerate libraries
 
 Usage:
-    python rag_llamaindex.py
-    # or with uv:
+    # Demo mode
     uv run rag_llamaindex.py
+
+    # Benchmark mode with top-k retrieval
+    uv run rag_llamaindex.py --mode topk --benchmark data/causal_rag_benchmark_v3.json --output results_rag_topk.json
+
+    # Benchmark mode with threshold retrieval
+    uv run rag_llamaindex.py --mode threshold --benchmark data/causal_rag_benchmark_v3.json --output results_rag_threshold.json
 """
 
+import argparse
 import json
 import logging
 from dataclasses import dataclass, field
@@ -446,82 +452,411 @@ def load_hepar_columns() -> list[str]:
     return columns
 
 
+def load_benchmark_queries(benchmark_path: str) -> list[dict]:
+    """
+    Load queries from benchmark file.
+
+    Args:
+        benchmark_path: Path to benchmark JSON file
+
+    Returns:
+        List of query dictionaries with 'id' and 'query' keys
+
+    Raises:
+        FileNotFoundError: If benchmark file doesn't exist
+    """
+    logger.info(f"Loading benchmark queries from {benchmark_path}")
+
+    benchmark_file = Path(benchmark_path)
+    if not benchmark_file.exists():
+        raise FileNotFoundError(f"Benchmark file not found: {benchmark_path}")
+
+    with open(benchmark_file, encoding="utf-8") as f:
+        benchmark = json.load(f)
+
+    queries = [{"id": q["id"], "query": q["query"]} for q in benchmark["queries"]]
+    logger.info(f"Loaded {len(queries)} benchmark queries")
+    return queries
+
+
+def save_results_json(
+    results: list[dict],
+    output_path: str,
+    mode: str,
+    embed_model: str,
+    top_k: int | None = None,
+    threshold: float | None = None,
+) -> None:
+    """
+    Save results to JSON file.
+
+    Args:
+        results: List of result dictionaries
+        output_path: Path to output JSON file
+        mode: Retrieval mode (topk or threshold)
+        embed_model: Embedding model used
+        top_k: Top-k value (for topk mode)
+        threshold: Threshold value (for threshold mode)
+    """
+    logger.info(f"Saving results to {output_path}")
+
+    output = {
+        "model": f"RAG ({embed_model})",
+        "mode": f"rag_{mode}",
+        "config": {
+            "embed_model": embed_model,
+            "mode": mode,
+        },
+        "results": results,
+    }
+
+    if top_k is not None:
+        output["config"]["top_k"] = top_k
+    if threshold is not None:
+        output["config"]["threshold"] = threshold
+
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(output, f, indent=2)
+
+    logger.info(f"Results saved to {output_path}")
+
+
+def parse_args() -> argparse.Namespace:
+    """Parse command line arguments."""
+    parser = argparse.ArgumentParser(
+        description="RAG-based column retrieval for medical data analysis",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  # Run demo
+  uv run rag_llamaindex.py
+
+  # Run benchmark with top-k retrieval
+  uv run rag_llamaindex.py --mode topk --benchmark data/causal_rag_benchmark_v3.json --output results_rag_topk.json --top-k 10
+
+  # Run benchmark with threshold retrieval
+  uv run rag_llamaindex.py --mode threshold --benchmark data/causal_rag_benchmark_v3.json --output results_rag_threshold.json --threshold 0.3
+        """,
+    )
+
+    parser.add_argument(
+        "--mode",
+        type=str,
+        choices=["topk", "threshold"],
+        default="topk",
+        help="Retrieval mode: 'topk' for top-k retrieval, 'threshold' for similarity threshold. Default: topk",
+    )
+
+    parser.add_argument(
+        "--benchmark",
+        type=str,
+        default=None,
+        help="Path to benchmark JSON file. If provided, runs on benchmark queries.",
+    )
+
+    parser.add_argument(
+        "--output",
+        type=str,
+        default=None,
+        help="Path to save results as JSON.",
+    )
+
+    parser.add_argument(
+        "--top-k",
+        type=int,
+        default=DEFAULT_TOP_K,
+        help=f"Number of columns to retrieve (for topk mode). Default: {DEFAULT_TOP_K}",
+    )
+
+    parser.add_argument(
+        "--threshold",
+        type=float,
+        default=DEFAULT_SIMILARITY_THRESHOLD,
+        help=f"Similarity threshold (for threshold mode). Default: {DEFAULT_SIMILARITY_THRESHOLD}",
+    )
+
+    parser.add_argument(
+        "--embed-model",
+        type=str,
+        default=DEFAULT_EMBED_MODEL,
+        help=f"Embedding model to use. Default: {DEFAULT_EMBED_MODEL}",
+    )
+
+    parser.add_argument(
+        "--no-llm",
+        action="store_true",
+        help="Skip LLM loading (retrieval only, faster startup)",
+    )
+
+    return parser.parse_args()
+
+
+class ColumnRAGRetrievalOnly:
+    """
+    Lightweight RAG system for retrieval only (no LLM).
+
+    This class is faster to initialize as it skips LLM loading.
+    Use this for benchmarking retrieval performance.
+    """
+
+    def __init__(self, embed_model: str = DEFAULT_EMBED_MODEL):
+        """
+        Initialize the retrieval-only RAG system.
+
+        Args:
+            embed_model: Embedding model name
+        """
+        self.embed_model = embed_model
+        self.index = None
+        self._documents = []
+
+        logger.info("Initializing ColumnRAG (retrieval only, no LLM)")
+        logger.info(f"  Embedding Model: {embed_model}")
+
+        # Setup embedding model only
+        logger.info(f"Loading embedding model: {embed_model}")
+        Settings.embed_model = HuggingFaceEmbedding(model_name=embed_model)
+        logger.info("Embedding model loaded successfully")
+
+    def build_index(
+        self,
+        columns: list[str],
+        column_meanings: dict[str, str] | None = None,
+    ) -> None:
+        """Build vector index from column names and their meanings."""
+        logger.info(f"Building index for {len(columns)} columns")
+
+        meanings = column_meanings or HEPAR_COLUMN_MEANINGS
+
+        self._documents = []
+        for col in columns:
+            meaning = meanings.get(col, f"Medical feature: {col}")
+            doc_text = f"Column: {col}\nDescription: {meaning}"
+            doc = Document(
+                text=doc_text,
+                metadata={"column_name": col, "description": meaning},
+            )
+            self._documents.append(doc)
+
+        logger.info(f"Created {len(self._documents)} documents")
+        logger.info("Building vector store index...")
+        self.index = VectorStoreIndex.from_documents(self._documents, show_progress=True)
+        logger.info("Index built successfully")
+
+    def retrieve_top_k(self, query: str, k: int = 10) -> list[dict]:
+        """Retrieve top-k most relevant columns for a query."""
+        if self.index is None:
+            raise ValueError("Index not built. Call build_index() first.")
+
+        retriever = VectorIndexRetriever(index=self.index, similarity_top_k=k)
+        nodes = retriever.retrieve(query)
+
+        results = []
+        for node in nodes:
+            results.append({
+                "column_name": node.metadata.get("column_name", ""),
+                "description": node.metadata.get("description", ""),
+                "score": node.score,
+            })
+        return results
+
+    def retrieve_by_threshold(
+        self, query: str, threshold: float = 0.5, max_results: int = 20
+    ) -> list[dict]:
+        """Retrieve columns above a similarity threshold."""
+        if self.index is None:
+            raise ValueError("Index not built. Call build_index() first.")
+
+        retriever = VectorIndexRetriever(index=self.index, similarity_top_k=max_results)
+        nodes = retriever.retrieve(query)
+
+        results = []
+        for node in nodes:
+            if node.score >= threshold:
+                results.append({
+                    "column_name": node.metadata.get("column_name", ""),
+                    "description": node.metadata.get("description", ""),
+                    "score": node.score,
+                })
+        return results
+
+
+def run_benchmark(
+    rag: ColumnRAGRetrievalOnly,
+    benchmark_path: str,
+    output_path: str,
+    mode: str,
+    top_k: int,
+    threshold: float,
+    embed_model: str,
+) -> None:
+    """
+    Run benchmark evaluation on RAG retrieval.
+
+    Args:
+        rag: Initialized RAG system
+        benchmark_path: Path to benchmark JSON file
+        output_path: Path to save results
+        mode: Retrieval mode ('topk' or 'threshold')
+        top_k: Number of columns for top-k mode
+        threshold: Similarity threshold for threshold mode
+        embed_model: Embedding model name
+    """
+    # Load benchmark queries
+    benchmark_queries = load_benchmark_queries(benchmark_path)
+
+    results = []
+    for q in benchmark_queries:
+        query_id = q["id"]
+        query = q["query"]
+
+        logger.info(f"\n--- Query [{query_id}] ---")
+        logger.info(f"Query: {query}")
+
+        # Retrieve columns based on mode
+        if mode == "topk":
+            retrieved = rag.retrieve_top_k(query, k=top_k)
+        else:  # threshold mode
+            retrieved = rag.retrieve_by_threshold(query, threshold=threshold)
+
+        predicted_columns = [r["column_name"] for r in retrieved]
+
+        logger.info(f"Selected columns ({len(predicted_columns)}): {predicted_columns}")
+
+        results.append({
+            "query_id": query_id,
+            "query": query,
+            "predicted_columns": predicted_columns,
+        })
+
+        print(f"\nResult: {predicted_columns}")
+
+    # Save results
+    if output_path:
+        save_results_json(
+            results=results,
+            output_path=output_path,
+            mode=mode,
+            embed_model=embed_model,
+            top_k=top_k if mode == "topk" else None,
+            threshold=threshold if mode == "threshold" else None,
+        )
+
+
 def main() -> None:
     """
-    Main function demonstrating RAG-based column retrieval.
+    Main function for RAG-based column retrieval.
 
-    Demonstrates:
-    1. Loading HEPAR columns with medical meanings
-    2. Building vector index
-    3. Retrieving columns using top-k and threshold methods
-    4. Optional: LLM-generated explanations (requires Ollama)
+    Supports two modes:
+    1. Demo mode: Runs sample queries with full RAG (including LLM)
+    2. Benchmark mode: Runs retrieval-only on benchmark queries
     """
+    args = parse_args()
+
     logger.info("=" * 60)
-    logger.info("RAG Column Retrieval Demo with LlamaIndex")
+    logger.info("RAG Column Retrieval with LlamaIndex")
     logger.info("=" * 60)
 
     # Load columns
     logger.info("\n--- Loading HEPAR columns ---")
     columns = load_hepar_columns()
 
-    # Initialize RAG
-    logger.info("\n--- Initializing RAG system ---")
-    config = RAGConfig(
-        top_k=8,
-        similarity_threshold=0.4,
-    )
-    rag = ColumnRAG(config)
+    if args.benchmark:
+        # Benchmark mode - use lightweight retrieval-only system
+        logger.info(f"\n--- Benchmark Mode ---")
+        logger.info(f"Mode: {args.mode}")
+        logger.info(f"Benchmark: {args.benchmark}")
+        logger.info(f"Output: {args.output}")
+        logger.info(f"Embed model: {args.embed_model}")
+        if args.mode == "topk":
+            logger.info(f"Top-k: {args.top_k}")
+        else:
+            logger.info(f"Threshold: {args.threshold}")
 
-    # Build index
-    logger.info("\n--- Building column index ---")
-    rag.build_index(columns, HEPAR_COLUMN_MEANINGS)
+        # Initialize retrieval-only RAG (faster, no LLM)
+        rag = ColumnRAGRetrievalOnly(embed_model=args.embed_model)
+        rag.build_index(columns, HEPAR_COLUMN_MEANINGS)
 
-    # Sample queries
-    sample_queries = [
-        "liver enzyme levels and hepatitis markers",
-        "risk factors for cirrhosis including alcohol",
-        "symptoms of bile duct obstruction",
-        "viral hepatitis B infection markers",
-        "fatty liver disease indicators",
-    ]
+        # Run benchmark
+        run_benchmark(
+            rag=rag,
+            benchmark_path=args.benchmark,
+            output_path=args.output,
+            mode=args.mode,
+            top_k=args.top_k,
+            threshold=args.threshold,
+            embed_model=args.embed_model,
+        )
 
-    # Demonstrate top-k retrieval
-    logger.info("\n" + "=" * 60)
-    logger.info("TOP-K RETRIEVAL DEMO")
-    logger.info("=" * 60)
+        logger.info("\n" + "=" * 60)
+        logger.info("Benchmark completed!")
+        logger.info("=" * 60)
 
-    for query in sample_queries[:2]:
-        logger.info(f"\n--- Query: '{query}' ---")
-        results = rag.retrieve_top_k(query, k=5)
-        logger.info("Top 5 relevant columns:")
-        for r in results:
-            logger.info(f"  [{r['score']:.3f}] {r['column_name']}: {r['description'][:60]}...")
+    else:
+        # Demo mode - use full RAG with LLM
+        logger.info("\n--- Demo Mode ---")
 
-    # Demonstrate threshold retrieval
-    logger.info("\n" + "=" * 60)
-    logger.info("THRESHOLD RETRIEVAL DEMO")
-    logger.info("=" * 60)
+        config = RAGConfig(
+            top_k=8,
+            similarity_threshold=0.4,
+            embed_model=args.embed_model,
+        )
 
-    for query in sample_queries[2:4]:
-        logger.info(f"\n--- Query: '{query}' ---")
-        results = rag.retrieve_by_threshold(query, threshold=0.35)
-        logger.info(f"Columns with similarity >= 0.35:")
-        for r in results:
-            logger.info(f"  [{r['score']:.3f}] {r['column_name']}")
+        if args.no_llm:
+            # Use lightweight version
+            rag = ColumnRAGRetrievalOnly(embed_model=args.embed_model)
+            rag.build_index(columns, HEPAR_COLUMN_MEANINGS)
+        else:
+            rag = ColumnRAG(config)
+            rag.build_index(columns, HEPAR_COLUMN_MEANINGS)
 
-    # Demonstrate LLM generation
-    logger.info("\n" + "=" * 60)
-    logger.info("LLM GENERATION DEMO (HuggingFace)")
-    logger.info("=" * 60)
+        # Sample queries
+        sample_queries = [
+            "liver enzyme levels and hepatitis markers",
+            "risk factors for cirrhosis including alcohol",
+            "symptoms of bile duct obstruction",
+            "viral hepatitis B infection markers",
+            "fatty liver disease indicators",
+        ]
 
-    query = "What columns should I use to analyze hepatitis B infection status?"
-    logger.info(f"\n--- Query: '{query}' ---")
-    response = rag.query_with_generation(query)
-    logger.info(f"LLM Response:\n{response}")
+        # Demonstrate top-k retrieval
+        logger.info("\n" + "=" * 60)
+        logger.info("TOP-K RETRIEVAL DEMO")
+        logger.info("=" * 60)
 
-    logger.info("\n" + "=" * 60)
-    logger.info("Demo completed!")
-    logger.info("=" * 60)
+        for query in sample_queries[:2]:
+            logger.info(f"\n--- Query: '{query}' ---")
+            results = rag.retrieve_top_k(query, k=5)
+            logger.info("Top 5 relevant columns:")
+            for r in results:
+                logger.info(f"  [{r['score']:.3f}] {r['column_name']}: {r['description'][:60]}...")
+
+        # Demonstrate threshold retrieval
+        logger.info("\n" + "=" * 60)
+        logger.info("THRESHOLD RETRIEVAL DEMO")
+        logger.info("=" * 60)
+
+        for query in sample_queries[2:4]:
+            logger.info(f"\n--- Query: '{query}' ---")
+            results = rag.retrieve_by_threshold(query, threshold=0.35)
+            logger.info(f"Columns with similarity >= 0.35:")
+            for r in results:
+                logger.info(f"  [{r['score']:.3f}] {r['column_name']}")
+
+        # Demonstrate LLM generation (only if full RAG)
+        if not args.no_llm and isinstance(rag, ColumnRAG):
+            logger.info("\n" + "=" * 60)
+            logger.info("LLM GENERATION DEMO (HuggingFace)")
+            logger.info("=" * 60)
+
+            query = "What columns should I use to analyze hepatitis B infection status?"
+            logger.info(f"\n--- Query: '{query}' ---")
+            response = rag.query_with_generation(query)
+            logger.info(f"LLM Response:\n{response}")
+
+        logger.info("\n" + "=" * 60)
+        logger.info("Demo completed!")
+        logger.info("=" * 60)
 
 
 if __name__ == "__main__":
