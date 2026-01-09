@@ -1,0 +1,213 @@
+{
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "mode": "simple",
+  "results": [
+    {
+      "query_id": "PRED1",
+      "query": "I want to predict which patients will develop cirrhosis",
+      "predicted_columns": [
+        "Cirrhosis",
+        "THepatitis",
+        "PBC",
+        "fibrosis",
+        "alcoholism",
+        "hepatotoxic",
+        "obesity",
+        "diabetes",
+        "ascites"
+      ]
+    },
+    {
+      "query_id": "PRED2",
+      "query": "Build a model to identify patients at risk for chronic hepatitis",
+      "predicted_columns": [
+        "THepatitis",
+        "ChHepatitis",
+        "PBC",
+        "Steatosis",
+        "Cirrhosis",
+        "alcoholism",
+        "hepatotoxic",
+        "diabetes",
+        "obesity"
+      ]
+    },
+    {
+      "query_id": "PRED3",
+      "query": "Predict which patients will develop fatty liver disease (steatosis)",
+      "predicted_columns": [
+        "alcoholism",
+        "alcohol",
+        "obesity",
+        "diabetes",
+        "fat",
+        "fatigue",
+        "amylase",
+        "cholesterol",
+        "triglycerides"
+      ]
+    },
+    {
+      "query_id": "PRED4",
+      "query": "I need to forecast elevated bilirubin levels in patients",
+      "predicted_columns": [
+        "bilirubin",
+        "alt",
+        "ast",
+        "ggtp",
+        "jaundice"
+      ]
+    },
+    {
+      "query_id": "PRED5",
+      "query": "Predict toxic hepatitis occurrence",
+      "predicted_columns": [
+        "THepatitis",
+        "hepatotoxic",
+        "alcoholism",
+        "diabetes",
+        "obesity",
+        "cholesterol",
+        "ast",
+        "ggtp",
+        "jaundice",
+        "albumin"
+      ]
+    },
+    {
+      "query_id": "PRED6",
+      "query": "Build a classifier for primary biliary cholangitis (PBC)",
+      "predicted_columns": [
+        "PBC",
+        "age",
+        "alcoholism",
+        "hepatotoxic",
+        "diabetes",
+        "obesity",
+        "fibrosis"
+      ]
+    },
+    {
+      "query_id": "PRED7",
+      "query": "Identify patients likely to have encephalopathy",
+      "predicted_columns": [
+        "encephalopathy",
+        "fatigue",
+        "upper_pain",
+        "jaundice",
+        "bilirubin",
+        "ast",
+        "alt",
+        "albumin",
+        "cholesterol",
+        "proteins"
+      ]
+    },
+    {
+      "query_id": "PRED8",
+      "query": "Predict bleeding risk in liver patients",
+      "predicted_columns": [
+        "bleeding",
+        "alt",
+        "ast",
+        "ggtp",
+        "bilirubin",
+        "albumin",
+        "proteins",
+        "inr",
+        "ascites",
+        "edema"
+      ]
+    },
+    {
+      "query_id": "PRED9",
+      "query": "Forecast which patients will develop ascites",
+      "predicted_columns": [
+        "ascites",
+        "Cirrhosis",
+        "fibrosis",
+        "hepatomegaly",
+        "jaundice",
+        "albumin",
+        "edema",
+        "proteins",
+        "ast",
+        "alt"
+      ]
+    },
+    {
+      "query_id": "PRED10",
+      "query": "Predict reactive hepatitis in patients",
+      "predicted_columns": [
+        "THepatitis",
+        "ChHepatitis",
+        "hepatotoxic",
+        "alcoholism",
+        "diabetes",
+        "obesity",
+        "fatigue",
+        "jaundice",
+        "itching"
+      ]
+    },
+    {
+      "query_id": "PRED11",
+      "query": "Build a model to predict fibrosis progression",
+      "predicted_columns": [
+        "fibrosis",
+        "age",
+        "alcoholism",
+        "hepatotoxic",
+        "diabetes",
+        "obesity",
+        "fibrosis"
+      ]
+    },
+    {
+      "query_id": "PRED12",
+      "query": "Predict hyperbilirubinemia in patients",
+      "predicted_columns": [
+        "bilirubin",
+        "jaundice"
+      ]
+    },
+    {
+      "query_id": "SEM1",
+      "query": "Show me all hepatitis-related columns in the dataset",
+      "predicted_columns": [
+        "THepatitis",
+        "ChHepatitis",
+        "RHepatitis"
+      ]
+    },
+    {
+      "query_id": "SEM2",
+      "query": "What demographic variables are available?",
+      "predicted_columns": [
+        "sex",
+        "age"
+      ]
+    },
+    {
+      "query_id": "SEM3",
+      "query": "List all antibody test columns",
+      "predicted_columns": [
+        "hbsag_anti",
+        "hbc_anti",
+        "hcv_anti",
+        "hbeag"
+      ]
+    },
+    {
+      "query_id": "SEM4",
+      "query": "What liver enzyme measurements are in the data?",
+      "predicted_columns": [
+        "alt",
+        "ast",
+        "ggtp",
+        "bilirubin",
+        "albumin"
+      ]
+    }
+  ]
+}

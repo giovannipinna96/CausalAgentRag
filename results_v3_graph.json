@@ -1,0 +1,219 @@
+{
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "mode": "graph",
+  "results": [
+    {
+      "query_id": "PRED1",
+      "query": "I want to predict which patients will develop cirrhosis",
+      "predicted_columns": [
+        "fibrosis",
+        "choledocholithotomy",
+        "transfusion",
+        "injections",
+        "vh_amn",
+        "alcoholism",
+        "age"
+      ]
+    },
+    {
+      "query_id": "PRED2",
+      "query": "Build a model to identify patients at risk for chronic hepatitis",
+      "predicted_columns": [
+        "THepatitis",
+        "RHepatitis",
+        "inr",
+        "phosphatase",
+        "ast",
+        "ggtp",
+        "choledocholithotomy",
+        "transfusion",
+        "injections"
+      ]
+    },
+    {
+      "query_id": "PRED3",
+      "query": "Predict which patients will develop fatty liver disease (steatosis)",
+      "predicted_columns": [
+        "choledocholithotomy",
+        "injections",
+        "transfusion",
+        "alcoholism",
+        "vh_amn",
+        "fibrosis",
+        "triglycerides"
+      ]
+    },
+    {
+      "query_id": "PRED4",
+      "query": "I need to forecast elevated bilirubin levels in patients",
+      "predicted_columns": [
+        "bilirubin",
+        "ast",
+        "alt",
+        "ggtp",
+        "cholesterol",
+        "age",
+        "choledocholithotomy",
+        "transfusion"
+      ]
+    },
+    {
+      "query_id": "PRED5",
+      "query": "Predict toxic hepatitis occurrence",
+      "predicted_columns": [
+        "THepatitis",
+        "RHepatitis",
+        "alcoholism",
+        "choledocholithotomy",
+        "injections",
+        "transfusion",
+        "vh_amn",
+        "fibrosis"
+      ]
+    },
+    {
+      "query_id": "PRED6",
+      "query": "Build a classifier for primary biliary cholangitis (PBC)",
+      "predicted_columns": [
+        "PBC",
+        "le_cells",
+        "joints",
+        "pain",
+        "platelet",
+        "ESR"
+      ]
+    },
+    {
+      "query_id": "PRED7",
+      "query": "Identify patients likely to have encephalopathy",
+      "predicted_columns": [
+        "encephalopathy",
+        "inr",
+        "urea",
+        "density",
+        "consciousness",
+        "ascites",
+        "platelet",
+        "albumin",
+        "edge",
+        "irregular_liver"
+      ]
+    },
+    {
+      "query_id": "PRED8",
+      "query": "Predict bleeding risk in liver patients",
+      "predicted_columns": [
+        "THepatitis",
+        "RHepatitis",
+        "inr",
+        "ast",
+        "ggtp",
+        "choledocholithotomy",
+        "injections",
+        "transfusion",
+        "platelet"
+      ]
+    },
+    {
+      "query_id": "PRED9",
+      "query": "Forecast which patients will develop ascites",
+      "predicted_columns": [
+        "ascites",
+        "fibrosis",
+        "choledocholithotomy",
+        "injections",
+        "transfusion",
+        "vh_amn",
+        "hbsag",
+        "hcv_anti"
+      ]
+    },
+    {
+      "query_id": "PRED10",
+      "query": "Predict reactive hepatitis in patients",
+      "predicted_columns": [
+        "THepatitis",
+        "RHepatitis",
+        "inr",
+        "phosphatase",
+        "alt",
+        "ast",
+        "ggtp",
+        "choledocholithotomy",
+        "injections"
+      ]
+    },
+    {
+      "query_id": "PRED11",
+      "query": "Build a model to predict fibrosis progression",
+      "predicted_columns": [
+        "fibrosis",
+        "choledocholithotomy",
+        "transfusion",
+        "alcoholism",
+        "vh_amn",
+        "ast",
+        "ggtp"
+      ]
+    },
+    {
+      "query_id": "PRED12",
+      "query": "Predict hyperbilirubinemia in patients",
+      "predicted_columns": [
+        "bilirubin",
+        "choledocholithotomy",
+        "age",
+        "ast",
+        "alt"
+      ]
+    },
+    {
+      "query_id": "SEM1",
+      "query": "Show me all hepatitis-related columns in the dataset",
+      "predicted_columns": [
+        "THepatitis",
+        "RHepatitis",
+        "ChHepatitis",
+        "vh_amn",
+        "hbsag",
+        "hbsag_anti",
+        "hbc_anti",
+        "hcv_anti",
+        "hbeag"
+      ]
+    },
+    {
+      "query_id": "SEM2",
+      "query": "What demographic variables are available?",
+      "predicted_columns": [
+        "sex",
+        "age"
+      ]
+    },
+    {
+      "query_id": "SEM3",
+      "query": "List all antibody test columns",
+      "predicted_columns": [
+        "hbc_anti",
+        "hcv_anti",
+        "hbeag"
+      ]
+    },
+    {
+      "query_id": "SEM4",
+      "query": "What liver enzyme measurements are in the data?",
+      "predicted_columns": [
+        "alt",
+        "ast",
+        "ggtp",
+        "alt",
+        "ast",
+        "ggtp",
+        "cholesterol",
+        "cholesterol",
+        "cholesterol",
+        "cholesterol"
+      ]
+    }
+  ]
+}

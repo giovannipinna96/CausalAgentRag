@@ -1,0 +1,221 @@
+{
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "mode": "graph",
+  "results": [
+    {
+      "query_id": "q1",
+      "query": "Find patients with hepatitis B infection",
+      "predicted_columns": [
+        "hbsag",
+        "hbsag_anti",
+        "vh_amn",
+        "choledocholithotomy",
+        "transfusion",
+        "alcoholism",
+        "fibrosis"
+      ]
+    },
+    {
+      "query_id": "q2",
+      "query": "Analyze liver enzyme levels",
+      "predicted_columns": [
+        "alt",
+        "ast",
+        "ggtp",
+        "bilirubin",
+        "albumin",
+        "cholesterol"
+      ]
+    },
+    {
+      "query_id": "q3",
+      "query": "Find patients at risk of cirrhosis based on alcohol consumption",
+      "predicted_columns": [
+        "alcohol",
+        "vh_amn",
+        "choledocholithotomy",
+        "injections",
+        "transfusion",
+        "hospital",
+        "surgery",
+        "fibrosis",
+        "PBC"
+      ]
+    },
+    {
+      "query_id": "q4",
+      "query": "Identify symptoms of bile duct obstruction",
+      "predicted_columns": [
+        "upper_pain",
+        "pressure_ruq",
+        "choledocholithotomy",
+        "choledocholithotomy",
+        "choledocholithotomy",
+        "choledocholithotomy",
+        "choledocholithotomy",
+        "choledocholithotomy",
+        "choledocholithotomy",
+        "choledocholithotomy"
+      ]
+    },
+    {
+      "query_id": "q5",
+      "query": "Evaluate liver synthetic function",
+      "predicted_columns": [
+        "proteins",
+        "albumin",
+        "alt",
+        "ast",
+        "ggtp",
+        "cholesterol",
+        "platelet",
+        "inr",
+        "urea",
+        "ascites"
+      ]
+    },
+    {
+      "query_id": "q6",
+      "query": "Find patients with fatty liver disease",
+      "predicted_columns": [
+        "alt",
+        "ast",
+        "ggtp",
+        "cholesterol",
+        "phosphatase",
+        "inr",
+        "albumin",
+        "platelet"
+      ]
+    },
+    {
+      "query_id": "q7",
+      "query": "Detect signs of portal hypertension",
+      "predicted_columns": [
+        "choledocholithotomy",
+        "transfusion",
+        "injections",
+        "platelet",
+        "jaundice",
+        "ascites",
+        "encephalopathy",
+        "density",
+        "edge"
+      ]
+    },
+    {
+      "query_id": "q8",
+      "query": "Identify autoimmune liver disease markers",
+      "predicted_columns": [
+        "le_cells",
+        "joints",
+        "pain",
+        "platelet",
+        "encephalopathy",
+        "palms",
+        "carcinoma",
+        "PBC",
+        "vh_amn"
+      ]
+    },
+    {
+      "query_id": "q9",
+      "query": "Assess hepatic encephalopathy risk",
+      "predicted_columns": [
+        "fatigue",
+        "inr",
+        "alt",
+        "ast",
+        "ggtp",
+        "cholesterol",
+        "platelet",
+        "encephalopathy",
+        "urea"
+      ]
+    },
+    {
+      "query_id": "q10",
+      "query": "Find viral hepatitis risk factors from patient history",
+      "predicted_columns": [
+        "vh_amn",
+        "choledocholithotomy",
+        "injections",
+        "transfusion",
+        "hospital",
+        "surgery",
+        "alcoholism",
+        "gallstones",
+        "fibrosis",
+        "PBC"
+      ]
+    },
+    {
+      "query_id": "q11",
+      "query": "Evaluate cholestatic liver disease",
+      "predicted_columns": [
+        "THepatitis",
+        "RHepatitis",
+        "choledocholithotomy",
+        "cholesterol",
+        "bilirubin",
+        "pressure_ruq",
+        "phosphatase",
+        "inr",
+        "jaundice"
+      ]
+    },
+    {
+      "query_id": "q12",
+      "query": "Find patients with hepatocellular carcinoma risk",
+      "predicted_columns": [
+        "vh_amn",
+        "choledocholithotomy",
+        "transfusion",
+        "alcoholism",
+        "fibrosis"
+      ]
+    },
+    {
+      "query_id": "q13",
+      "query": "Identify drug-induced liver injury",
+      "predicted_columns": [
+        "alcoholism",
+        "transfusion",
+        "injections",
+        "vh_amn",
+        "RHepatitis",
+        "THepatitis",
+        "choledocholithotomy",
+        "cholesterol"
+      ]
+    },
+    {
+      "query_id": "q14",
+      "query": "Evaluate patient with jaundice",
+      "predicted_columns": [
+        "jaundice",
+        "bilirubin",
+        "ast",
+        "alt",
+        "ggtp",
+        "choledocholithotomy",
+        "transfusion",
+        "hbsag"
+      ]
+    },
+    {
+      "query_id": "q15",
+      "query": "Find patients with hepatomegaly and abdominal symptoms",
+      "predicted_columns": [
+        "hepatomegaly",
+        "alt",
+        "ast",
+        "ggtp",
+        "choledocholithotomy",
+        "upper_pain",
+        "pain_ruq",
+        "fat"
+      ]
+    }
+  ]
+}
