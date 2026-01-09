@@ -1,0 +1,158 @@
+{
+  "meta": {
+    "dataset": "HEPAR2",
+    "goal": "Evaluate causal retriever for ML prediction tasks - avoiding data leakage",
+    "hypothesis": "Semantic retrieval selects columns correlated with target, including EFFECTS (leakage). Causal retrieval selects only CAUSES (valid features).",
+    "metrics": {
+      "precision": "gold_columns found / total columns retrieved",
+      "recall": "gold_columns found / total gold_columns", 
+      "leakage_rate": "leakage_columns found / total columns retrieved (lower is better)"
+    }
+  },
+  "queries": [
+    {
+      "id": "PRED1",
+      "query": "I want to predict which patients will develop cirrhosis",
+      "target": "Cirrhosis",
+      "gold_columns": ["Steatosis", "fibrosis"],
+      "leakage_columns": ["albumin", "alcohol", "alt", "ast", "bilirubin", "carcinoma", "edema", "edge", "encephalopathy", "inr", "irregular_liver", "palms", "phosphatase", "platelet", "proteins", "spiders", "spleen"],
+      "reasoning": "A semantic retriever would likely select 'irregular_liver', 'spiders', 'albumin' because they sound liver-related. But these are EFFECTS of cirrhosis - using them causes data leakage. Only Steatosis and fibrosis are valid predictors.",
+      "trap_severity": "high"
+    },
+    {
+      "id": "PRED2", 
+      "query": "Build a model to identify patients at risk for chronic hepatitis",
+      "target": "ChHepatitis",
+      "gold_columns": ["injections", "transfusion", "vh_amn"],
+      "leakage_columns": ["ESR", "alt", "ast", "bilirubin", "cholesterol", "fatigue", "fibrosis", "ggtp", "hbc_anti", "hbeag", "hbsag", "hbsag_anti", "hcv_anti", "inr", "phosphatase", "pressure_ruq"],
+      "reasoning": "Liver enzymes (alt, ast, ggtp) and hepatitis markers (hbsag, hcv_anti) seem like obvious features, but they are EFFECTS of chronic hepatitis. Valid predictors are exposure risks: injections, transfusion, vh_amn.",
+      "trap_severity": "high"
+    },
+    {
+      "id": "PRED3",
+      "query": "Predict which patients will develop fatty liver disease (steatosis)",
+      "target": "Steatosis", 
+      "gold_columns": ["alcoholism", "obesity"],
+      "leakage_columns": ["Cirrhosis", "ESR", "alt", "ast", "cholesterol", "ggtp", "hepatomegaly", "pain_ruq", "triglycerides"],
+      "reasoning": "Triglycerides and cholesterol sound metabolically related to fatty liver, but they are downstream effects. Hepatomegaly (enlarged liver) is also an effect. Only alcoholism and obesity are valid causal predictors.",
+      "trap_severity": "high"
+    },
+    {
+      "id": "PRED4",
+      "query": "I need to forecast elevated bilirubin levels in patients",
+      "target": "bilirubin",
+      "gold_columns": ["ChHepatitis", "Cirrhosis", "Hyperbilirubinemia", "PBC", "gallstones"],
+      "leakage_columns": ["itching", "jaundice", "skin"],
+      "reasoning": "Jaundice and skin discoloration are classic signs of high bilirubin - a semantic retriever would pick them. But they are EFFECTS, not causes. The actual causes are the underlying liver diseases and gallstones.",
+      "trap_severity": "medium"
+    },
+    {
+      "id": "PRED5",
+      "query": "Predict toxic hepatitis occurrence",
+      "target": "THepatitis",
+      "gold_columns": ["alcoholism", "hepatotoxic"],
+      "leakage_columns": ["alt", "anorexia", "ast", "fatigue", "ggtp", "hepatomegaly", "inr", "nausea", "phosphatase", "spleen"],
+      "reasoning": "Symptoms like fatigue, nausea, anorexia and lab values like ALT, AST seem predictive of hepatitis. But these manifest AFTER the condition develops. Only toxic exposures (hepatotoxic substances, alcoholism) are valid predictors.",
+      "trap_severity": "high"
+    },
+    {
+      "id": "PRED6",
+      "query": "Build a classifier for primary biliary cholangitis (PBC)",
+      "target": "PBC",
+      "gold_columns": ["age", "sex"],
+      "leakage_columns": ["ESR", "ama", "bilirubin", "carcinoma", "cholesterol", "encephalopathy", "ggtp", "joints", "le_cells", "pain", "platelet", "pressure_ruq"],
+      "reasoning": "AMA (antimitochondrial antibodies) is THE diagnostic marker for PBC - any semantic retriever would select it. But AMA is an EFFECT of PBC, not a cause. The only valid predictors are demographics (age, sex).",
+      "trap_severity": "very_high"
+    },
+    {
+      "id": "PRED7",
+      "query": "Identify patients likely to have encephalopathy",
+      "target": "encephalopathy",
+      "gold_columns": ["Cirrhosis", "PBC"],
+      "leakage_columns": ["consciousness", "density", "urea"],
+      "reasoning": "Consciousness impairment and urea levels seem directly related to encephalopathy. But these are downstream manifestations. Encephalopathy is caused by severe liver disease (Cirrhosis, PBC).",
+      "trap_severity": "medium"
+    },
+    {
+      "id": "PRED8",
+      "query": "Predict bleeding risk in liver patients",
+      "target": "bleeding",
+      "gold_columns": ["inr", "platelet"],
+      "leakage_columns": [],
+      "reasoning": "This is a straightforward case - INR and platelet count are the direct causes of bleeding. No leakage trap here, but tests that the retriever finds the correct causal parents.",
+      "trap_severity": "low"
+    },
+    {
+      "id": "PRED9",
+      "query": "Forecast which patients will develop ascites",
+      "target": "ascites",
+      "gold_columns": ["proteins"],
+      "leakage_columns": [],
+      "reasoning": "Ascites (fluid accumulation) is caused by low protein levels. Simple causal chain, no leakage trap.",
+      "trap_severity": "low"
+    },
+    {
+      "id": "PRED10",
+      "query": "Predict reactive hepatitis in patients",
+      "target": "RHepatitis",
+      "gold_columns": ["hepatotoxic"],
+      "leakage_columns": ["alt", "anorexia", "ast", "fatigue", "ggtp", "hepatomegaly", "nausea", "phosphatase", "spleen"],
+      "reasoning": "Lab values and symptoms like fatigue, hepatomegaly are effects of the condition. Only hepatotoxic exposure is a valid predictor.",
+      "trap_severity": "high"
+    },
+    {
+      "id": "PRED11",
+      "query": "Build a model to predict fibrosis progression",
+      "target": "fibrosis",
+      "gold_columns": ["ChHepatitis"],
+      "leakage_columns": ["Cirrhosis"],
+      "reasoning": "Cirrhosis is the outcome of fibrosis progression - using it as a feature is reverse causation. Only ChHepatitis (the cause of fibrosis) is valid.",
+      "trap_severity": "medium"
+    },
+    {
+      "id": "PRED12",
+      "query": "Predict hyperbilirubinemia in patients",
+      "target": "Hyperbilirubinemia",
+      "gold_columns": ["age", "sex"],
+      "leakage_columns": ["ESR", "bilirubin", "ggtp", "hepatomegaly", "inr", "pain_ruq"],
+      "reasoning": "Bilirubin level itself is an EFFECT of hyperbilirubinemia (almost tautological). Lab values like ESR, ggtp are downstream. Only demographics are valid upstream predictors.",
+      "trap_severity": "very_high"
+    },
+    {
+      "id": "SEM1",
+      "query": "Show me all hepatitis-related columns in the dataset",
+      "target": null,
+      "gold_columns": ["THepatitis", "ChHepatitis", "RHepatitis"],
+      "leakage_columns": [],
+      "reasoning": "Pure semantic query - no prediction task, no leakage concern. Baseline for semantic retriever.",
+      "trap_severity": "none"
+    },
+    {
+      "id": "SEM2",
+      "query": "What demographic variables are available?",
+      "target": null,
+      "gold_columns": ["age", "sex"],
+      "leakage_columns": [],
+      "reasoning": "Pure semantic query - baseline test.",
+      "trap_severity": "none"
+    },
+    {
+      "id": "SEM3",
+      "query": "List all antibody test columns",
+      "target": null,
+      "gold_columns": ["hbsag_anti", "hbc_anti", "hcv_anti"],
+      "leakage_columns": [],
+      "reasoning": "Pure semantic query - baseline test.",
+      "trap_severity": "none"
+    },
+    {
+      "id": "SEM4",
+      "query": "What liver enzyme measurements are in the data?",
+      "target": null,
+      "gold_columns": ["alt", "ast", "ggtp", "phosphatase"],
+      "leakage_columns": [],
+      "reasoning": "Pure semantic query - baseline test.",
+      "trap_severity": "none"
+    }
+  ]
+}

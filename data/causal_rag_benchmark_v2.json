@@ -1,0 +1,219 @@
+{
+  "meta": {
+    "dataset": "HEPAR2",
+    "goal": "Realistic agent tasks requiring causal reasoning for column selection",
+    "notes": "Tasks where causal structure informs column selection, but the user is not explicitly asking about the DAG"
+  },
+  "queries": [
+    {
+      "id": "PRED1",
+      "type": "prediction",
+      "query": "I want to build a model to predict which patients will develop cirrhosis",
+      "reasoning": "Predicting cirrhosis requires its causal parents as features",
+      "gold_columns": ["Steatosis", "fibrosis"]
+    },
+    {
+      "id": "PRED2",
+      "type": "prediction",
+      "query": "Help me predict bleeding risk in these patients",
+      "reasoning": "Bleeding is caused by inr and platelet",
+      "gold_columns": ["inr", "platelet"]
+    },
+    {
+      "id": "PRED3",
+      "type": "prediction",
+      "query": "I need to forecast which patients will show jaundice",
+      "reasoning": "Jaundice is caused by bilirubin",
+      "gold_columns": ["bilirubin"]
+    },
+    {
+      "id": "PRED4",
+      "type": "prediction",
+      "query": "Build a classifier for chronic hepatitis risk",
+      "reasoning": "ChHepatitis parents are the risk factors",
+      "gold_columns": ["injections", "transfusion", "vh_amn"]
+    },
+    {
+      "id": "PRED5",
+      "type": "prediction",
+      "query": "I want to identify patients likely to develop steatosis",
+      "reasoning": "Steatosis is caused by obesity and alcoholism",
+      "gold_columns": ["obesity", "alcoholism"]
+    },
+    {
+      "id": "PRED6",
+      "type": "prediction",
+      "query": "Predict consciousness impairment in liver patients",
+      "reasoning": "Consciousness is downstream of encephalopathy",
+      "gold_columns": ["encephalopathy"]
+    },
+    {
+      "id": "DIAG1",
+      "type": "diagnosis",
+      "query": "This patient has elevated ALT, help me understand the possible causes",
+      "reasoning": "Need to check all conditions that cause elevated ALT",
+      "gold_columns": ["THepatitis", "ChHepatitis", "Steatosis", "Cirrhosis", "RHepatitis"]
+    },
+    {
+      "id": "DIAG2",
+      "type": "diagnosis",
+      "query": "Patient presents with hepatomegaly, what should I investigate?",
+      "reasoning": "Conditions that cause hepatomegaly",
+      "gold_columns": ["THepatitis", "Steatosis", "Hyperbilirubinemia", "RHepatitis"]
+    },
+    {
+      "id": "DIAG3",
+      "type": "diagnosis",
+      "query": "Why might this patient have high bilirubin levels?",
+      "reasoning": "All causal parents of bilirubin",
+      "gold_columns": ["gallstones", "ChHepatitis", "PBC", "Cirrhosis", "Hyperbilirubinemia"]
+    },
+    {
+      "id": "DIAG4",
+      "type": "diagnosis",
+      "query": "Patient has ascites, what underlying condition should I look for?",
+      "reasoning": "Ascites is caused by proteins",
+      "gold_columns": ["proteins"]
+    },
+    {
+      "id": "DIAG5",
+      "type": "diagnosis",
+      "query": "What could explain this patient's elevated ESR?",
+      "reasoning": "ESR parents in the DAG",
+      "gold_columns": ["ChHepatitis", "PBC", "Steatosis", "Hyperbilirubinemia"]
+    },
+    {
+      "id": "DIAG6",
+      "type": "diagnosis",
+      "query": "Patient reports itching, what's the likely driver?",
+      "reasoning": "Itching is caused by bilirubin",
+      "gold_columns": ["bilirubin"]
+    },
+    {
+      "id": "INTERV1",
+      "type": "intervention_monitoring",
+      "query": "If we successfully treat this patient's chronic hepatitis, what outcomes should we track?",
+      "reasoning": "Need to monitor downstream effects of ChHepatitis",
+      "gold_columns": ["fibrosis", "fatigue", "bilirubin", "pressure_ruq", "phosphatase", "inr", "ESR", "alt", "ast", "ggtp", "cholesterol", "hbsag", "hbsag_anti", "hbc_anti", "hcv_anti", "hbeag"]
+    },
+    {
+      "id": "INTERV2",
+      "type": "intervention_monitoring",
+      "query": "We're putting this patient on a program to reduce alcoholism. What should we monitor?",
+      "reasoning": "Downstream effects of alcoholism",
+      "gold_columns": ["THepatitis", "Steatosis"]
+    },
+    {
+      "id": "INTERV3",
+      "type": "intervention_monitoring",
+      "query": "Patient is getting treatment for steatosis. Which lab values should improve?",
+      "reasoning": "Children of Steatosis that are measurable",
+      "gold_columns": ["triglycerides", "ESR", "alt", "ast", "ggtp", "cholesterol", "hepatomegaly", "pain_ruq"]
+    },
+    {
+      "id": "INTERV4",
+      "type": "intervention_monitoring",
+      "query": "After gallstone removal surgery, what should we watch for?",
+      "reasoning": "Downstream effects of gallstones",
+      "gold_columns": ["bilirubin", "upper_pain", "fat", "pressure_ruq", "flatulence", "amylase"]
+    },
+    {
+      "id": "INTERV5",
+      "type": "intervention_monitoring",
+      "query": "If we manage to reverse this patient's fibrosis, what improvements might we see?",
+      "reasoning": "Fibrosis leads to Cirrhosis",
+      "gold_columns": ["Cirrhosis"]
+    },
+    {
+      "id": "INTERV6",
+      "type": "intervention_monitoring",
+      "query": "We're treating encephalopathy. What parameters indicate treatment success?",
+      "reasoning": "Children of encephalopathy",
+      "gold_columns": ["urea", "density", "consciousness"]
+    },
+    {
+      "id": "RISK1",
+      "type": "risk_screening",
+      "query": "Patient has PBC diagnosis. What complications should we screen for?",
+      "reasoning": "Downstream effects of PBC",
+      "gold_columns": ["bilirubin", "pressure_ruq", "ama", "le_cells", "joints", "pain", "platelet", "encephalopathy", "ESR", "ggtp", "cholesterol", "carcinoma"]
+    },
+    {
+      "id": "RISK2",
+      "type": "risk_screening",
+      "query": "Patient with confirmed cirrhosis. What's the full picture I need to assess?",
+      "reasoning": "All downstream manifestations of Cirrhosis",
+      "gold_columns": ["bilirubin", "phosphatase", "proteins", "edema", "platelet", "inr", "alcohol", "encephalopathy", "alt", "ast", "spleen", "spiders", "albumin", "edge", "irregular_liver", "palms", "carcinoma"]
+    },
+    {
+      "id": "RISK3",
+      "type": "risk_screening",
+      "query": "This patient has diabetes. What related conditions should I check?",
+      "reasoning": "Diabetes leads to obesity",
+      "gold_columns": ["obesity"]
+    },
+    {
+      "id": "RISK4",
+      "type": "risk_screening",
+      "query": "Patient with toxic hepatitis. What symptoms and labs should I monitor?",
+      "reasoning": "Downstream of THepatitis",
+      "gold_columns": ["fatigue", "phosphatase", "inr", "hepatomegaly", "alt", "ast", "ggtp", "anorexia", "nausea", "spleen"]
+    },
+    {
+      "id": "STUDY1",
+      "type": "study_design",
+      "query": "I want to study the relationship between alcoholism and liver enzymes. What variables should I include in my analysis?",
+      "reasoning": "Need alcoholism, downstream liver enzymes, and the pathway (Steatosis, THepatitis)",
+      "gold_columns": ["alcoholism", "THepatitis", "Steatosis", "alt", "ast", "ggtp"]
+    },
+    {
+      "id": "STUDY2",
+      "type": "study_design",
+      "query": "Designing a study on injection-related hepatitis risk. What data should I collect?",
+      "reasoning": "Injections pathway to ChHepatitis and relevant confounders",
+      "gold_columns": ["injections", "hospital", "surgery", "choledocholithotomy", "ChHepatitis"]
+    },
+    {
+      "id": "STUDY3",
+      "type": "study_design",
+      "query": "I'm researching the progression from fibrosis to liver failure. What variables are relevant?",
+      "reasoning": "Fibrosis to Cirrhosis pathway and Cirrhosis consequences",
+      "gold_columns": ["fibrosis", "Cirrhosis", "encephalopathy", "proteins", "albumin", "inr", "platelet"]
+    },
+    {
+      "id": "STUDY4",
+      "type": "study_design",
+      "query": "Planning a cohort study on obesity and liver disease. What should I measure?",
+      "reasoning": "Obesity pathway through Steatosis",
+      "gold_columns": ["obesity", "diabetes", "Steatosis", "Cirrhosis", "triglycerides"]
+    },
+    {
+      "id": "SEM1",
+      "type": "semantic_baseline",
+      "query": "Show me all the hepatitis-related columns",
+      "reasoning": "Pure semantic matching on 'hepatitis'",
+      "gold_columns": ["THepatitis", "ChHepatitis", "RHepatitis"]
+    },
+    {
+      "id": "SEM2",
+      "type": "semantic_baseline",
+      "query": "What columns contain antibody test results?",
+      "reasoning": "Pure semantic matching on 'antibody'",
+      "gold_columns": ["hbsag_anti", "hbc_anti", "hcv_anti"]
+    },
+    {
+      "id": "SEM3",
+      "type": "semantic_baseline",
+      "query": "Give me patient demographic columns",
+      "reasoning": "Pure semantic matching",
+      "gold_columns": ["age", "sex"]
+    },
+    {
+      "id": "SEM4",
+      "type": "semantic_baseline",
+      "query": "List all pain-related variables",
+      "reasoning": "Pure semantic matching on 'pain'",
+      "gold_columns": ["pain", "pain_ruq", "upper_pain", "hepatalgia"]
+    }
+  ]
+}
