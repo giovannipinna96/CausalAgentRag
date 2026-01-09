@@ -1,0 +1,111 @@
+{
+  "description": "Benchmark dataset for evaluating column selection in hepatological data analysis",
+  "version": "1.0",
+  "queries": [
+    {
+      "id": "q1",
+      "query": "Find patients with hepatitis B infection",
+      "expected_columns": ["hbsag", "hbsag_anti", "hbc_anti", "hbeag", "vh_amn"],
+      "category": "viral_markers",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q2",
+      "query": "Analyze liver enzyme levels",
+      "expected_columns": ["alt", "ast", "ggtp", "phosphatase"],
+      "category": "lab_tests",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q3",
+      "query": "Find patients at risk of cirrhosis based on alcohol consumption",
+      "expected_columns": ["alcoholism", "alcohol", "Cirrhosis", "fibrosis"],
+      "category": "risk_factors",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q4",
+      "query": "Identify symptoms of bile duct obstruction",
+      "expected_columns": ["jaundice", "itching", "bilirubin", "phosphatase", "gallstones", "choledocholithotomy"],
+      "category": "symptoms",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q5",
+      "query": "Evaluate liver synthetic function",
+      "expected_columns": ["albumin", "proteins", "inr", "platelet", "bleeding"],
+      "category": "lab_tests",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q6",
+      "query": "Find patients with fatty liver disease",
+      "expected_columns": ["Steatosis", "obesity", "diabetes", "triglycerides", "cholesterol", "fat"],
+      "category": "diseases",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q7",
+      "query": "Detect signs of portal hypertension",
+      "expected_columns": ["spleen", "ascites", "platelet", "varices", "edema", "Cirrhosis"],
+      "category": "physical_findings",
+      "difficulty": "hard"
+    },
+    {
+      "id": "q8",
+      "query": "Identify autoimmune liver disease markers",
+      "expected_columns": ["ama", "le_cells", "PBC", "ChHepatitis"],
+      "category": "autoimmune",
+      "difficulty": "hard"
+    },
+    {
+      "id": "q9",
+      "query": "Assess hepatic encephalopathy risk",
+      "expected_columns": ["encephalopathy", "consciousness", "Cirrhosis", "albumin", "bilirubin"],
+      "category": "complications",
+      "difficulty": "hard"
+    },
+    {
+      "id": "q10",
+      "query": "Find viral hepatitis risk factors from patient history",
+      "expected_columns": ["vh_amn", "transfusion", "injections", "hospital", "surgery"],
+      "category": "risk_factors",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q11",
+      "query": "Evaluate cholestatic liver disease",
+      "expected_columns": ["phosphatase", "ggtp", "bilirubin", "itching", "PBC", "gallstones"],
+      "category": "diseases",
+      "difficulty": "hard"
+    },
+    {
+      "id": "q12",
+      "query": "Find patients with hepatocellular carcinoma risk",
+      "expected_columns": ["carcinoma", "Cirrhosis", "ChHepatitis", "hbsag", "hcv_anti", "fibrosis"],
+      "category": "diseases",
+      "difficulty": "hard"
+    },
+    {
+      "id": "q13",
+      "query": "Identify drug-induced liver injury",
+      "expected_columns": ["THepatitis", "hepatotoxic", "alt", "ast", "bilirubin"],
+      "category": "diseases",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q14",
+      "query": "Evaluate patient with jaundice",
+      "expected_columns": ["jaundice", "bilirubin", "Hyperbilirubinemia", "alt", "ast", "phosphatase"],
+      "category": "symptoms",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q15",
+      "query": "Find patients with hepatomegaly and abdominal symptoms",
+      "expected_columns": ["hepatomegaly", "pain", "upper_pain", "pain_ruq", "pressure_ruq", "hepatalgia"],
+      "category": "physical_findings",
+      "difficulty": "medium"
+    }
+  ]
+}
