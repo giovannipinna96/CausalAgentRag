@@ -1,0 +1,615 @@
+{
+  "metadata": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "mode": "descriptions",
+    "num_queries": 15
+  },
+  "aggregate_metrics": {
+    "num_queries": 15,
+    "mean_precision": 0.30158730158730157,
+    "mean_recall": 0.3466666666666667,
+    "mean_f1_score": 0.3098508898508899,
+    "mean_jaccard": 0.19257575757575757,
+    "exact_match_rate": 0,
+    "std_precision": 0.1596751913124156,
+    "std_recall": 0.2034620981825003,
+    "std_f1_score": 0.1592782787798475,
+    "std_jaccard": 0.1055390615889173
+  },
+  "per_query_metrics": [
+    {
+      "query_id": "q1",
+      "query": "Find patients with hepatitis B infection",
+      "precision": 0.3333333333333333,
+      "recall": 0.6,
+      "f1_score": 0.42857142857142855,
+      "jaccard": 0.2727272727272727,
+      "exact_match": false,
+      "predicted_columns": [
+        "hbsag",
+        "hbsag_anti",
+        "vh_amn",
+        "RHepatitis",
+        "choledocholithotomy",
+        "injections",
+        "transfusion",
+        "RHepatitis",
+        "le_cells",
+        "ama"
+      ],
+      "expected_columns": [
+        "hbsag",
+        "hbsag_anti",
+        "hbc_anti",
+        "hbeag",
+        "vh_amn"
+      ],
+      "true_positives": [
+        "hbsag",
+        "hbsag_anti",
+        "vh_amn"
+      ],
+      "false_positives": [
+        "RHepatitis",
+        "ama",
+        "choledocholithotomy",
+        "injections",
+        "le_cells",
+        "transfusion"
+      ],
+      "false_negatives": [
+        "hbc_anti",
+        "hbeag"
+      ]
+    },
+    {
+      "query_id": "q2",
+      "query": "Analyze liver enzyme levels",
+      "precision": 0.3333333333333333,
+      "recall": 0.5,
+      "f1_score": 0.4,
+      "jaccard": 0.25,
+      "exact_match": false,
+      "predicted_columns": [
+        "alt",
+        "ast",
+        "bilirubin",
+        "albumin",
+        "cholesterol",
+        "amylase"
+      ],
+      "expected_columns": [
+        "alt",
+        "ast",
+        "ggtp",
+        "phosphatase"
+      ],
+      "true_positives": [
+        "alt",
+        "ast"
+      ],
+      "false_positives": [
+        "albumin",
+        "amylase",
+        "bilirubin",
+        "cholesterol"
+      ],
+      "false_negatives": [
+        "ggtp",
+        "phosphatase"
+      ]
+    },
+    {
+      "query_id": "q3",
+      "query": "Find patients at risk of cirrhosis based on alcohol consumption",
+      "precision": 0.2857142857142857,
+      "recall": 0.5,
+      "f1_score": 0.36363636363636365,
+      "jaccard": 0.2222222222222222,
+      "exact_match": false,
+      "predicted_columns": [
+        "alcoholism",
+        "fibrosis",
+        "inr",
+        "platelet",
+        "albumin",
+        "ast",
+        "alt"
+      ],
+      "expected_columns": [
+        "alcoholism",
+        "alcohol",
+        "Cirrhosis",
+        "fibrosis"
+      ],
+      "true_positives": [
+        "alcoholism",
+        "fibrosis"
+      ],
+      "false_positives": [
+        "albumin",
+        "alt",
+        "ast",
+        "inr",
+        "platelet"
+      ],
+      "false_negatives": [
+        "Cirrhosis",
+        "alcohol"
+      ]
+    },
+    {
+      "query_id": "q4",
+      "query": "Identify symptoms of bile duct obstruction",
+      "precision": 0.3333333333333333,
+      "recall": 0.3333333333333333,
+      "f1_score": 0.3333333333333333,
+      "jaccard": 0.2,
+      "exact_match": false,
+      "predicted_columns": [
+        "choledocholithotomy",
+        "jaundice",
+        "upper_pain",
+        "pain_ruq",
+        "ascites",
+        "edema"
+      ],
+      "expected_columns": [
+        "jaundice",
+        "itching",
+        "bilirubin",
+        "phosphatase",
+        "gallstones",
+        "choledocholithotomy"
+      ],
+      "true_positives": [
+        "choledocholithotomy",
+        "jaundice"
+      ],
+      "false_positives": [
+        "ascites",
+        "edema",
+        "pain_ruq",
+        "upper_pain"
+      ],
+      "false_negatives": [
+        "bilirubin",
+        "gallstones",
+        "itching",
+        "phosphatase"
+      ]
+    },
+    {
+      "query_id": "q5",
+      "query": "Evaluate liver synthetic function",
+      "precision": 0.42857142857142855,
+      "recall": 0.6,
+      "f1_score": 0.5,
+      "jaccard": 0.3333333333333333,
+      "exact_match": false,
+      "predicted_columns": [
+        "proteins",
+        "albumin",
+        "alt",
+        "ast",
+        "bilirubin",
+        "cholesterol",
+        "platelet"
+      ],
+      "expected_columns": [
+        "albumin",
+        "proteins",
+        "inr",
+        "platelet",
+        "bleeding"
+      ],
+      "true_positives": [
+        "albumin",
+        "platelet",
+        "proteins"
+      ],
+      "false_positives": [
+        "alt",
+        "ast",
+        "bilirubin",
+        "cholesterol"
+      ],
+      "false_negatives": [
+        "bleeding",
+        "inr"
+      ]
+    },
+    {
+      "query_id": "q6",
+      "query": "Find patients with fatty liver disease",
+      "precision": 0.3333333333333333,
+      "recall": 0.3333333333333333,
+      "f1_score": 0.3333333333333333,
+      "jaccard": 0.2,
+      "exact_match": false,
+      "predicted_columns": [
+        "fibrosis",
+        "triglycerides",
+        "albumin",
+        "alt",
+        "ast",
+        "cholesterol"
+      ],
+      "expected_columns": [
+        "Steatosis",
+        "obesity",
+        "diabetes",
+        "triglycerides",
+        "cholesterol",
+        "fat"
+      ],
+      "true_positives": [
+        "cholesterol",
+        "triglycerides"
+      ],
+      "false_positives": [
+        "albumin",
+        "alt",
+        "ast",
+        "fibrosis"
+      ],
+      "false_negatives": [
+        "Steatosis",
+        "diabetes",
+        "fat",
+        "obesity"
+      ]
+    },
+    {
+      "query_id": "q7",
+      "query": "Detect signs of portal hypertension",
+      "precision": 0.5,
+      "recall": 0.3333333333333333,
+      "f1_score": 0.4,
+      "jaccard": 0.25,
+      "exact_match": false,
+      "predicted_columns": [
+        "ascites",
+        "edema",
+        "hepatomegaly",
+        "inr"
+      ],
+      "expected_columns": [
+        "spleen",
+        "ascites",
+        "platelet",
+        "varices",
+        "edema",
+        "Cirrhosis"
+      ],
+      "true_positives": [
+        "ascites",
+        "edema"
+      ],
+      "false_positives": [
+        "hepatomegaly",
+        "inr"
+      ],
+      "false_negatives": [
+        "Cirrhosis",
+        "platelet",
+        "spleen",
+        "varices"
+      ]
+    },
+    {
+      "query_id": "q8",
+      "query": "Identify autoimmune liver disease markers",
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "jaccard": 0.0,
+      "exact_match": false,
+      "predicted_columns": [
+        "hbc_anti",
+        "hbeag"
+      ],
+      "expected_columns": [
+        "ama",
+        "le_cells",
+        "PBC",
+        "ChHepatitis"
+      ],
+      "true_positives": [],
+      "false_positives": [
+        "hbc_anti",
+        "hbeag"
+      ],
+      "false_negatives": [
+        "ChHepatitis",
+        "PBC",
+        "ama",
+        "le_cells"
+      ]
+    },
+    {
+      "query_id": "q9",
+      "query": "Assess hepatic encephalopathy risk",
+      "precision": 0.3,
+      "recall": 0.6,
+      "f1_score": 0.4,
+      "jaccard": 0.25,
+      "exact_match": false,
+      "predicted_columns": [
+        "inr",
+        "encephalopathy",
+        "amylase",
+        "cholesterol",
+        "bilirubin",
+        "albumin",
+        "ascites",
+        "ast",
+        "alt",
+        "platelet"
+      ],
+      "expected_columns": [
+        "encephalopathy",
+        "consciousness",
+        "Cirrhosis",
+        "albumin",
+        "bilirubin"
+      ],
+      "true_positives": [
+        "albumin",
+        "bilirubin",
+        "encephalopathy"
+      ],
+      "false_positives": [
+        "alt",
+        "amylase",
+        "ascites",
+        "ast",
+        "cholesterol",
+        "inr",
+        "platelet"
+      ],
+      "false_negatives": [
+        "Cirrhosis",
+        "consciousness"
+      ]
+    },
+    {
+      "query_id": "q10",
+      "query": "Find viral hepatitis risk factors from patient history",
+      "precision": 0.2,
+      "recall": 0.2,
+      "f1_score": 0.20000000000000004,
+      "jaccard": 0.1111111111111111,
+      "exact_match": false,
+      "predicted_columns": [
+        "vh_amn",
+        "hbsag",
+        "hbsag_anti",
+        "hbc_anti",
+        "hcv_anti"
+      ],
+      "expected_columns": [
+        "vh_amn",
+        "transfusion",
+        "injections",
+        "hospital",
+        "surgery"
+      ],
+      "true_positives": [
+        "vh_amn"
+      ],
+      "false_positives": [
+        "hbc_anti",
+        "hbsag",
+        "hbsag_anti",
+        "hcv_anti"
+      ],
+      "false_negatives": [
+        "hospital",
+        "injections",
+        "surgery",
+        "transfusion"
+      ]
+    },
+    {
+      "query_id": "q11",
+      "query": "Evaluate cholestatic liver disease",
+      "precision": 0.3333333333333333,
+      "recall": 0.16666666666666666,
+      "f1_score": 0.2222222222222222,
+      "jaccard": 0.125,
+      "exact_match": false,
+      "predicted_columns": [
+        "choledocholithotomy",
+        "cholesterol",
+        "bilirubin"
+      ],
+      "expected_columns": [
+        "phosphatase",
+        "ggtp",
+        "bilirubin",
+        "itching",
+        "PBC",
+        "gallstones"
+      ],
+      "true_positives": [
+        "bilirubin"
+      ],
+      "false_positives": [
+        "choledocholithotomy",
+        "cholesterol"
+      ],
+      "false_negatives": [
+        "PBC",
+        "gallstones",
+        "ggtp",
+        "itching",
+        "phosphatase"
+      ]
+    },
+    {
+      "query_id": "q12",
+      "query": "Find patients with hepatocellular carcinoma risk",
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "jaccard": 0.0,
+      "exact_match": false,
+      "predicted_columns": [
+        "vh_amn",
+        "choledocholithotomy",
+        "RHepatitis",
+        "alcoholism",
+        "inr",
+        "ascites",
+        "jaundice"
+      ],
+      "expected_columns": [
+        "carcinoma",
+        "Cirrhosis",
+        "ChHepatitis",
+        "hbsag",
+        "hcv_anti",
+        "fibrosis"
+      ],
+      "true_positives": [],
+      "false_positives": [
+        "RHepatitis",
+        "alcoholism",
+        "ascites",
+        "choledocholithotomy",
+        "inr",
+        "jaundice",
+        "vh_amn"
+      ],
+      "false_negatives": [
+        "ChHepatitis",
+        "Cirrhosis",
+        "carcinoma",
+        "fibrosis",
+        "hbsag",
+        "hcv_anti"
+      ]
+    },
+    {
+      "query_id": "q13",
+      "query": "Identify drug-induced liver injury",
+      "precision": 0.14285714285714285,
+      "recall": 0.2,
+      "f1_score": 0.16666666666666666,
+      "jaccard": 0.09090909090909091,
+      "exact_match": false,
+      "predicted_columns": [
+        "vh_amn",
+        "hepatotoxic",
+        "RHepatitis",
+        "choledocholithotomy",
+        "injections",
+        "transfusion",
+        "RHepatitis",
+        "fibrosis"
+      ],
+      "expected_columns": [
+        "THepatitis",
+        "hepatotoxic",
+        "alt",
+        "ast",
+        "bilirubin"
+      ],
+      "true_positives": [
+        "hepatotoxic"
+      ],
+      "false_positives": [
+        "RHepatitis",
+        "choledocholithotomy",
+        "fibrosis",
+        "injections",
+        "transfusion",
+        "vh_amn"
+      ],
+      "false_negatives": [
+        "THepatitis",
+        "alt",
+        "ast",
+        "bilirubin"
+      ]
+    },
+    {
+      "query_id": "q14",
+      "query": "Evaluate patient with jaundice",
+      "precision": 0.5,
+      "recall": 0.3333333333333333,
+      "f1_score": 0.4,
+      "jaccard": 0.25,
+      "exact_match": false,
+      "predicted_columns": [
+        "jaundice",
+        "bilirubin",
+        "ascites",
+        "fibrosis"
+      ],
+      "expected_columns": [
+        "jaundice",
+        "bilirubin",
+        "Hyperbilirubinemia",
+        "alt",
+        "ast",
+        "phosphatase"
+      ],
+      "true_positives": [
+        "bilirubin",
+        "jaundice"
+      ],
+      "false_positives": [
+        "ascites",
+        "fibrosis"
+      ],
+      "false_negatives": [
+        "Hyperbilirubinemia",
+        "alt",
+        "ast",
+        "phosphatase"
+      ]
+    },
+    {
+      "query_id": "q15",
+      "query": "Find patients with hepatomegaly and abdominal symptoms",
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1_score": 0.5,
+      "jaccard": 0.3333333333333333,
+      "exact_match": false,
+      "predicted_columns": [
+        "hepatomegaly",
+        "upper_pain",
+        "pain_ruq",
+        "jaundice",
+        "ascites",
+        "edema"
+      ],
+      "expected_columns": [
+        "hepatomegaly",
+        "pain",
+        "upper_pain",
+        "pain_ruq",
+        "pressure_ruq",
+        "hepatalgia"
+      ],
+      "true_positives": [
+        "hepatomegaly",
+        "pain_ruq",
+        "upper_pain"
+      ],
+      "false_positives": [
+        "ascites",
+        "edema",
+        "jaundice"
+      ],
+      "false_negatives": [
+        "hepatalgia",
+        "pain",
+        "pressure_ruq"
+      ]
+    }
+  ]
+}
