@@ -7,12 +7,12 @@ that indexes medical column names with their meanings for semantic retrieval.
 
 The system uses:
 - LlamaIndex for document indexing and retrieval
-- Ollama for the LLM component
+- HuggingFace transformers for the LLM component
 - all-MiniLM-L6-v2 for embeddings
 
 Prerequisites:
-    - Ollama must be installed and running (https://ollama.com)
-    - The model must be pulled: `ollama pull qwen2.5:3b`
+    - A CUDA-capable GPU with sufficient VRAM (~6GB for Qwen2.5-3B-Instruct)
+    - HuggingFace transformers and accelerate libraries
 
 Usage:
     python rag_llamaindex.py
@@ -25,10 +25,12 @@ import logging
 from dataclasses import dataclass, field
 from pathlib import Path
 
+import torch
 from llama_index.core import Document, Settings, VectorStoreIndex
 from llama_index.core.retrievers import VectorIndexRetriever
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
-from llama_index.llms.ollama import Ollama
+from llama_index.llms.huggingface import HuggingFaceLLM
+from transformers import BitsAndBytesConfig
 
 # Configure logging
 logging.basicConfig(
@@ -39,10 +41,11 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Configuration defaults
-DEFAULT_LLM_MODEL = "qwen2.5:3b"
+DEFAULT_LLM_MODEL = "Qwen/Qwen2.5-3B-Instruct"
 DEFAULT_EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 DEFAULT_TOP_K = 10
 DEFAULT_SIMILARITY_THRESHOLD = 0.5
+DEFAULT_MAX_NEW_TOKENS = 512
 
 # File paths
 DATA_DIR = Path(__file__).parent / "data"
@@ -145,9 +148,11 @@ class RAGConfig:
     llm_model: str = DEFAULT_LLM_MODEL
     embed_model: str = DEFAULT_EMBED_MODEL
     llm_temperature: float = 0.1
-    llm_timeout: float = 120.0
+    max_new_tokens: int = DEFAULT_MAX_NEW_TOKENS
     top_k: int = DEFAULT_TOP_K
     similarity_threshold: float = DEFAULT_SIMILARITY_THRESHOLD
+    use_quantization: bool = False
+    quantization_bits: int = 4  # 4 or 8 bit quantization when enabled
 
 
 class ColumnRAG:
@@ -184,6 +189,17 @@ class ColumnRAG:
         """Configure LlamaIndex global settings."""
         logger.info("Setting up LlamaIndex components...")
 
+        # Check GPU availability
+        logger.info("Verifying GPU availability...")
+        if not torch.cuda.is_available():
+            raise RuntimeError(
+                "CUDA is not available. A GPU is required for HuggingFace LLM inference. "
+                "Please ensure you have a CUDA-capable GPU and the correct PyTorch version installed."
+            )
+        gpu_name = torch.cuda.get_device_name(0)
+        gpu_memory = torch.cuda.get_device_properties(0).total_memory / (1024**3)
+        logger.info(f"GPU available: {gpu_name} ({gpu_memory:.1f} GB)")
+
         # Setup embedding model (local, no API needed)
         logger.info(f"Loading embedding model: {self.config.embed_model}")
         Settings.embed_model = HuggingFaceEmbedding(
@@ -191,14 +207,43 @@ class ColumnRAG:
         )
         logger.info("Embedding model loaded successfully")
 
-        # Setup LLM via Ollama
-        logger.info(f"Configuring Ollama LLM: {self.config.llm_model}")
-        Settings.llm = Ollama(
-            model=self.config.llm_model,
-            temperature=self.config.llm_temperature,
-            request_timeout=self.config.llm_timeout,
+        # Setup quantization config if enabled
+        model_kwargs = {"trust_remote_code": True}
+        if self.config.use_quantization:
+            logger.info(f"Setting up {self.config.quantization_bits}-bit quantization...")
+            if self.config.quantization_bits == 4:
+                quantization_config = BitsAndBytesConfig(
+                    load_in_4bit=True,
+                    bnb_4bit_compute_dtype=torch.float16,
+                    bnb_4bit_quant_type="nf4",
+                    bnb_4bit_use_double_quant=True,
+                )
+            elif self.config.quantization_bits == 8:
+                quantization_config = BitsAndBytesConfig(
+                    load_in_8bit=True,
+                )
+            else:
+                raise ValueError(
+                    f"Invalid quantization_bits: {self.config.quantization_bits}. "
+                    "Must be 4 or 8."
+                )
+            model_kwargs["quantization_config"] = quantization_config
+        else:
+            model_kwargs["torch_dtype"] = torch.float16
+            logger.info("Using float16 precision (no quantization)")
+
+        # Setup LLM via HuggingFace
+        logger.info(f"Loading HuggingFace LLM: {self.config.llm_model}")
+        logger.info("This may take a few minutes on first run (downloading model weights)...")
+        Settings.llm = HuggingFaceLLM(
+            model_name=self.config.llm_model,
+            tokenizer_name=self.config.llm_model,
+            max_new_tokens=self.config.max_new_tokens,
+            generate_kwargs={"temperature": self.config.llm_temperature, "do_sample": True},
+            model_kwargs=model_kwargs,
+            device_map="auto",
         )
-        logger.info("LLM configured successfully")
+        logger.info("LLM loaded successfully")
 
     def build_index(
         self,
@@ -356,7 +401,7 @@ class ColumnRAG:
 
         Raises:
             ValueError: If index hasn't been built
-            ConnectionError: If Ollama server is not accessible
+            RuntimeError: If LLM generation fails
         """
         if self.index is None:
             raise ValueError("Index not built. Call build_index() first.")
@@ -464,22 +509,15 @@ def main() -> None:
         for r in results:
             logger.info(f"  [{r['score']:.3f}] {r['column_name']}")
 
-    # Demonstrate LLM generation (only if Ollama is available)
+    # Demonstrate LLM generation
     logger.info("\n" + "=" * 60)
-    logger.info("LLM GENERATION DEMO (requires Ollama)")
+    logger.info("LLM GENERATION DEMO (HuggingFace)")
     logger.info("=" * 60)
 
-    try:
-        query = "What columns should I use to analyze hepatitis B infection status?"
-        logger.info(f"\n--- Query: '{query}' ---")
-        response = rag.query_with_generation(query)
-        logger.info(f"LLM Response:\n{response}")
-    except Exception as e:
-        logger.warning(f"LLM generation skipped (Ollama not available): {e}")
-        logger.info("To enable LLM generation, install and start Ollama:")
-        logger.info("  1. Install: https://ollama.com/download")
-        logger.info("  2. Start: ollama serve")
-        logger.info("  3. Pull model: ollama pull qwen2.5:3b")
+    query = "What columns should I use to analyze hepatitis B infection status?"
+    logger.info(f"\n--- Query: '{query}' ---")
+    response = rag.query_with_generation(query)
+    logger.info(f"LLM Response:\n{response}")
 
     logger.info("\n" + "=" * 60)
     logger.info("Demo completed!")

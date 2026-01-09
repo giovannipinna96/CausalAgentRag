@@ -25,8 +25,9 @@ CausalAgentRag/
 │   ├── hepar_graph.json            # Graph structure as JSON (generated)
 │   └── hepar_graph.png             # Causal network visualization (generated)
 ├── data_preprocessing.py           # Data processing and graph visualization
-├── llm_ollama.py                   # LLM inference via Ollama framework
-├── rag_llamaindex.py               # RAG system with LlamaIndex
+├── llm_huggingface.py              # LLM inference via HuggingFace transformers
+├── llm_ollama.py                   # LLM inference via Ollama (legacy)
+├── rag_llamaindex.py               # RAG system with LlamaIndex + HuggingFace
 ├── retrievers.py                   # Hybrid semantic-causal retrievers
 ├── main.py                         # Main entry point
 ├── pyproject.toml                  # Project dependencies
@@ -40,8 +41,7 @@ CausalAgentRag/
 
 - **Python 3.10+**
 - **uv** package manager (recommended)
-- **Ollama** (optional, for LLM features)
-- **20GB VRAM GPU** (recommended for LLM inference)
+- **CUDA-capable GPU** with ~6GB+ VRAM (required for LLM inference with Qwen2.5-3B-Instruct)
 
 ### Setup
 
@@ -56,14 +56,7 @@ cd CausalAgentRag
 uv sync
 ```
 
-3. (Optional) Install and configure Ollama for LLM features:
-```bash
-# Install Ollama from https://ollama.com/download
-# Then pull the model:
-ollama pull qwen2.5:3b
-# Start the Ollama server:
-ollama serve
-```
+3. The first run will automatically download the Qwen2.5-3B-Instruct model from HuggingFace (~6GB).
 
 ## Usage
 
@@ -87,23 +80,34 @@ Built graph with 70 nodes and 123 edges
 Saved graph visualization to data/hepar_graph.png
 ```
 
-### 2. LLM Column Selection (Requires Ollama)
+### 2. LLM Column Selection (HuggingFace)
 
 Use a local LLM to intelligently select columns for natural language queries:
 
 ```bash
-uv run llm_ollama.py
+uv run llm_huggingface.py
 ```
 
 **What it does:**
-- Connects to Ollama server running Qwen2.5:3b
+- Loads Qwen2.5-3B-Instruct model via HuggingFace transformers
 - Takes natural language queries about the data
 - Returns JSON array of relevant column names
 
 **Example Query:**
 ```
 Query: "What columns do I need to analyze liver enzyme levels?"
-Selected columns: ["alt", "ast", "ggtp", "phosphatase"]
+Selected columns: ["alt", "ast", "ggtp", "bilirubin", "albumin"]
+```
+
+**Configuration Options:**
+```python
+LLMConfig(
+    model_name="Qwen/Qwen2.5-3B-Instruct",  # HuggingFace model
+    temperature=0.1,                          # Low for deterministic outputs
+    max_new_tokens=512,                       # Maximum response length
+    use_quantization=False,                   # Enable 4/8-bit quantization
+    quantization_bits=4,                      # 4 or 8 bit (when enabled)
+)
 ```
 
 ### 3. RAG-based Column Retrieval
@@ -142,26 +146,36 @@ Processes raw HEPAR data files and generates structured outputs.
 - `export_graph_json(graph, path)` - Export graph structure
 - `visualize_graph(graph, path)` - Generate PNG visualization
 
-### `llm_ollama.py`
+### `llm_huggingface.py`
 
-LLM interface using the Ollama framework for local model inference.
+LLM interface using HuggingFace transformers for local model inference.
 
 **Key Classes:**
-- `OllamaLLM` - Wrapper for Ollama Python client
-  - `generate(prompt, system_prompt)` - Text generation
-  - `generate_stream(...)` - Streaming generation
+- `HuggingFaceLLM` - Wrapper for HuggingFace transformers
+  - `generate(prompt, system_prompt)` - Text generation with chat template
+  - `generate_stream(...)` - Streaming generation with TextIteratorStreamer
 
 **Key Functions:**
-- `select_columns_with_llm(query, columns, llm)` - LLM-based column selection
+- `select_columns_with_llm(query, columns, llm)` - LLM-based column selection (simple mode)
+- `select_columns_with_enriched_prompt(...)` - LLM-based column selection with descriptions and causal graph
 
 **Configuration:**
 ```python
 LLMConfig(
-    model_name="qwen2.5:3b",  # ~2GB VRAM
-    temperature=0.1,          # Low for deterministic outputs
-    timeout=120.0             # Request timeout in seconds
+    model_name="Qwen/Qwen2.5-3B-Instruct",  # ~6GB VRAM
+    temperature=0.1,                          # Low for deterministic outputs
+    max_new_tokens=512,                       # Maximum response length
+    use_quantization=False,                   # Enable 4/8-bit quantization
+    quantization_bits=4,                      # 4 or 8 bit (when enabled)
 )
 ```
+
+### `llm_ollama.py` (Legacy)
+
+LLM interface using the Ollama framework for local model inference. This module is kept for backwards compatibility but is no longer actively used.
+
+**Key Classes:**
+- `OllamaLLM` - Wrapper for Ollama Python client
 
 ### `rag_llamaindex.py`
 
@@ -177,10 +191,12 @@ RAG system built with LlamaIndex for semantic column retrieval.
 **Configuration:**
 ```python
 RAGConfig(
-    llm_model="qwen2.5:3b",
+    llm_model="Qwen/Qwen2.5-3B-Instruct",
     embed_model="sentence-transformers/all-MiniLM-L6-v2",
     top_k=10,
-    similarity_threshold=0.5
+    similarity_threshold=0.5,
+    use_quantization=False,  # Enable 4/8-bit quantization
+    quantization_bits=4,     # 4 or 8 bit (when enabled)
 )
 ```
 
@@ -243,15 +259,18 @@ The generated `hepar_graph.png` displays the causal network with color-coded nod
 | `pandas` | Data manipulation |
 | `networkx` | Graph operations and BFS traversal |
 | `matplotlib` | Graph visualization |
-| `sentence-transformers` | Semantic embeddings |
+| `torch` | Deep learning framework |
+| `transformers` | HuggingFace model loading |
+| `accelerate` | Efficient model loading |
+| `bitsandbytes` | Optional quantization support |
 | `llama-index` | RAG framework |
-| `llama-index-llms-ollama` | Ollama LLM integration |
+| `llama-index-llms-huggingface` | HuggingFace LLM integration |
 | `llama-index-embeddings-huggingface` | HuggingFace embeddings |
-| `ollama` | Local LLM client |
+| `tiktoken` | Token counting |
 
 ### Model Requirements
 
-- **LLM**: Qwen2.5:3b (~2GB VRAM) via Ollama
+- **LLM**: Qwen2.5-3B-Instruct (~6GB VRAM) via HuggingFace transformers
 - **Embeddings**: all-MiniLM-L6-v2 (~90MB, runs on CPU)
 
 ### Scoring Mechanisms
@@ -290,14 +309,17 @@ for r in results:
     print(f"{r['column_name']}: {r['score']:.3f}")
 ```
 
-### Using OllamaLLM Programmatically
+### Using HuggingFaceLLM Programmatically
 
 ```python
-from llm_ollama import OllamaLLM, LLMConfig, select_columns_with_llm
+from llm_huggingface import HuggingFaceLLM, LLMConfig, select_columns_with_llm
 
-# Initialize LLM
-config = LLMConfig(model_name="qwen2.5:3b")
-llm = OllamaLLM(config)
+# Initialize LLM (requires CUDA GPU)
+config = LLMConfig(
+    model_name="Qwen/Qwen2.5-3B-Instruct",
+    use_quantization=False,  # Set True for 4-bit quantization (saves VRAM)
+)
+llm = HuggingFaceLLM(config)
 
 # Select columns
 columns = ["alt", "ast", "bilirubin", "albumin", "fatigue", "jaundice"]
@@ -322,7 +344,8 @@ This system can be applied to:
 - Onisko, A., et al. "HEPAR II: A Probabilistic Model for Diagnosis of Liver Disorders"
 - bnlearn: Bayesian Network Repository (https://www.bnlearn.com/bnrepository/)
 - LlamaIndex Documentation (https://docs.llamaindex.ai/)
-- Ollama Documentation (https://ollama.com/)
+- HuggingFace Transformers (https://huggingface.co/docs/transformers/)
+- Qwen2.5 Model (https://huggingface.co/Qwen/Qwen2.5-3B-Instruct)
 
 ## License
 
