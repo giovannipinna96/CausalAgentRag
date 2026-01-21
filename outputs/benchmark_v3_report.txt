@@ -1,0 +1,49 @@
+Risultati della Valutazione (Benchmark v3 - 16 queries)
+
+Classificazione delle Risposte
+
+| Modo | Corrette (Esatte) | Parziali (tutte gold + extra) | Sbagliate (manca almeno 1 gold) |
+|------|--------------------|-----------------------------|--------------------------------|
+| Simple | 0/16 (0.0%) | 8/16 (50.0%) | 8/16 (50.0%) |
+| Descriptions | 0/16 (0.0%) | 6/16 (37.5%) | 10/16 (62.5%) |
+| Graph | 0/16 (0.0%) | 5/16 (31.2%) | 11/16 (68.8%) |
+| Semantic RAG | 0/16 (0.0%) | 5/16 (31.2%) | 11/16 (68.8%) |
+| Hybrid RAG | 0/16 (0.0%) | 7/16 (43.8%) | 9/16 (56.2%) |
+| RRF Hybrid | 0/16 (0.0%) | 10/16 (62.5%) | 6/16 (37.5%) |
+| RRF Markov | 0/16 (0.0%) | 11/16 (68.8%) | 5/16 (31.2%) |
+| HyDE Only | 0/16 (0.0%) | 4/16 (25.0%) | 12/16 (75.0%) |
+| ColBERT Only | 1/16 (6.2%) | 5/16 (31.2%) | 10/16 (62.5%) |
+| CRAG Semantic | 0/16 (0.0%) | 5/16 (31.2%) | 11/16 (68.8%) |
+| Advanced (HyDE+ColBERT+BM25+CRAG) | 0/16 (0.0%) | 1/16 (6.2%) | 15/16 (93.8%) |
+
+Metriche Aggregate
+
+| Modo | Precision | Recall | F1 Score | Jaccard | Exact Match Rate |
+|------|-----------|--------|----------|---------|------------------|
+| Simple | 0.1327 | 0.6010 | 0.1341 | 0.0933 | 0.0000 |
+| Descriptions | 0.1687 | 0.4760 | 0.1455 | 0.1114 | 0.0000 |
+| Graph | 0.0840 | 0.4344 | 0.1108 | 0.0729 | 0.0000 |
+| Semantic RAG | 0.1653 | 0.4417 | 0.1992 | 0.1288 | 0.0000 |
+| Hybrid RAG | 0.2493 | 0.5938 | 0.2989 | 0.2000 | 0.0000 |
+| RRF Hybrid | 0.2538 | 0.7458 | 0.3317 | 0.2252 | 0.0000 |
+| RRF Markov | 0.2510 | 0.8021 | 0.3320 | 0.2175 | 0.0000 |
+| HyDE Only | 0.1437 | 0.3302 | 0.1473 | 0.0886 | 0.0000 |
+| ColBERT Only | 0.1802 | 0.4938 | 0.2370 | 0.1749 | 0.0625 |
+| CRAG Semantic | 0.1528 | 0.4208 | 0.1832 | 0.1163 | 0.0000 |
+| Advanced (HyDE+ColBERT+BM25+CRAG) | 0.1431 | 0.2698 | 0.1564 | 0.1122 | 0.0000 |
+
+Leakage Metrics (Data Leakage Avoidance)
+
+| Modo | Avg Leakage Count | Avg Leakage Rate | Leakage Avoidance |
+|------|-------------------|------------------|-------------------|
+| Simple | 6.10 | 0.1026 | 0.4647 |
+| Descriptions | 4.80 | 0.0863 | 0.4580 |
+| Graph | 5.20 | 0.1626 | 0.4953 |
+| Semantic RAG | 0.70 | 0.0756 | 0.8580 |
+| Hybrid RAG | 3.90 | 0.4247 | 0.3814 |
+| RRF Hybrid | 0.40 | 0.0450 | 0.8743 |
+| RRF Markov | 0.90 | 0.0900 | 0.8462 |
+| HyDE Only | 1.30 | 0.1553 | 0.8410 |
+| ColBERT Only | 1.30 | 0.1311 | 0.8962 |
+| CRAG Semantic | 0.80 | 0.0856 | 0.8497 |
+| Advanced (HyDE+ColBERT+BM25+CRAG) | 1.80 | 0.1936 | 0.7280 |

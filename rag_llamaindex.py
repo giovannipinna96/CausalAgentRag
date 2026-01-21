@@ -583,6 +583,13 @@ Examples:
     )
 
     parser.add_argument(
+        "--llm-model",
+        type=str,
+        default=DEFAULT_LLM_MODEL,
+        help=f"LLM model to use (for demo mode with generation). Default: {DEFAULT_LLM_MODEL}",
+    )
+
+    parser.add_argument(
         "--no-llm",
         action="store_true",
         help="Skip LLM loading (retrieval only, faster startup)",
@@ -797,6 +804,7 @@ def main() -> None:
         logger.info("\n--- Demo Mode ---")
 
         config = RAGConfig(
+            llm_model=args.llm_model,
             top_k=8,
             similarity_threshold=0.4,
             embed_model=args.embed_model,

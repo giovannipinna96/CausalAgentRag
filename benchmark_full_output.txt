@@ -1,0 +1,1 @@
+=== BENCHMARK COMPLETO === echo Metodi: semantic_only, rrf_hybrid, hyde_only, colbert_only, crag_semantic, advanced_full echo Query: 16 echo  RUN_METHODS=rag_semantic,rrf_hybrid,hyde_only,colbert_only,crag_semantic,advanced_full uv run python benchmark_v3.py

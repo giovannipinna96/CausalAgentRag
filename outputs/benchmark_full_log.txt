@@ -1,0 +1,1072 @@
+2026-01-12 15:54:15 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-01-12 15:54:18 - INFO - Use pytorch device_name: cuda:0
+2026-01-12 15:54:18 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+Initializing RRF hybrid retriever...
+Batches:   0%|          | 0/3 [00:00<?, ?it/s]Batches: 100%|██████████| 3/3 [00:00<00:00, 109.51it/s]
+Batches:   0%|          | 0/3 [00:00<?, ?it/s]Batches: 100%|██████████| 3/3 [00:00<00:00, 149.16it/s]
+2026-01-12 15:54:20 - INFO - Initializing HuggingFaceLLM with model: Qwen/Qwen2.5-3B-Instruct
+2026-01-12 15:54:20 - INFO - Verifying GPU availability...
+2026-01-12 15:54:20 - INFO - GPU available: 1 device(s)
+2026-01-12 15:54:20 - INFO - Primary GPU: NVIDIA A100 80GB PCIe (79.1 GB)
+2026-01-12 15:54:20 - INFO - Loading tokenizer...
+2026-01-12 15:54:21 - INFO - Tokenizer loaded successfully
+2026-01-12 15:54:21 - INFO - Using float16 precision (no quantization)
+2026-01-12 15:54:21 - INFO - Loading model Qwen/Qwen2.5-3B-Instruct...
+2026-01-12 15:54:21 - INFO - This may take a few minutes on first run (downloading model weights)...
+`torch_dtype` is deprecated! Use `dtype` instead!
+2026-01-12 15:54:21 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+RRF retriever initialized.
+Initializing HuggingFace LLM...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.15s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.17it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.11it/s]
+2026-01-12 15:54:24 - INFO - Model loaded successfully
+2026-01-12 15:54:24 - INFO - Model device: cuda:0
+2026-01-12 15:54:24 - INFO - HuggingFaceLLM initialized successfully
+2026-01-12 15:54:24 - INFO - Generating response for prompt (length: 1179 chars)
+2026-01-12 15:54:24 - INFO - Applying chat template...
+2026-01-12 15:54:24 - INFO - Tokenizing input...
+2026-01-12 15:54:24 - INFO - Input tokens: 404
+2026-01-12 15:54:24 - INFO - Generating response...
+2026-01-12 15:54:33 - INFO - Generated response (length: 686 chars)
+2026-01-12 15:54:33 - INFO - Generating response for prompt (length: 5945 chars)
+2026-01-12 15:54:33 - INFO - Applying chat template...
+2026-01-12 15:54:33 - INFO - Tokenizing input...
+2026-01-12 15:54:33 - INFO - Input tokens: 1450
+2026-01-12 15:54:33 - INFO - Generating response...
+2026-01-12 15:54:42 - INFO - Generated response (length: 643 chars)
+2026-01-12 15:54:42 - INFO - Generating response for prompt (length: 12727 chars)
+2026-01-12 15:54:42 - INFO - Applying chat template...
+2026-01-12 15:54:42 - INFO - Tokenizing input...
+2026-01-12 15:54:42 - INFO - Input tokens: 4162
+2026-01-12 15:54:42 - INFO - Generating response...
+2026-01-12 15:54:46 - INFO - Generated response (length: 220 chars)
+2026-01-12 15:54:46 - INFO - Generating response for prompt (length: 1282 chars)
+2026-01-12 15:54:46 - INFO - Applying chat template...
+2026-01-12 15:54:46 - INFO - Tokenizing input...
+2026-01-12 15:54:46 - INFO - Input tokens: 334
+2026-01-12 15:54:46 - INFO - Generating response...
+2026-01-12 15:54:48 - INFO - Generated response (length: 127 chars)
+2026-01-12 15:54:48 - INFO - Generating response for prompt (length: 1175 chars)
+2026-01-12 15:54:48 - INFO - Applying chat template...
+2026-01-12 15:54:48 - INFO - Tokenizing input...
+2026-01-12 15:54:48 - INFO - Input tokens: 304
+2026-01-12 15:54:48 - INFO - Generating response...
+2026-01-12 15:54:49 - INFO - Generated response (length: 110 chars)
+LLM initialized: Qwen/Qwen2.5-3B-Instruct
+
+============================================================
+Query 1/16 - PRED1: I want to predict which patients will develop cirrhosis
+Gold columns: ['Steatosis', 'fibrosis']
+============================================================
+[1/16] Method 1/7: Simple
+  -> PARTIAL | found 55 cols | gold hit 2/2 | leakage 11/17
+[1/16] Method 2/7: Descriptions
+  -> PARTIAL | found 55 cols | gold hit 2/2 | leakage 16/17
+[1/16] Method 3/7: Graph
+  -> PARTIAL | found 17 cols | gold hit 2/2 | leakage 6/17
+[1/16] Method 4/7: Semantic RAG
+  -> WRONG | found 10 cols | gold hit 0/2 | leakage 1/17
+[1/16] Method 5/7: Hybrid RAG
+  -> WRONG | found 10 cols | gold hit 1/2 | leakage 6/17
+[1/16] Method 6/7: RRF Hybrid
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 188.47it/s]
+2026-01-12 15:54:49 - INFO - Generating response for prompt (length: 1200 chars)
+2026-01-12 15:54:49 - INFO - Applying chat template...
+2026-01-12 15:54:49 - INFO - Tokenizing input...
+2026-01-12 15:54:49 - INFO - Input tokens: 308
+2026-01-12 15:54:49 - INFO - Generating response...
+2026-01-12 15:54:51 - INFO - Generated response (length: 112 chars)
+  -> PARTIAL | found 9 cols | gold hit 2/2 | leakage 0/17
+[1/16] Method 7/7: RRF Markov
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 198.10it/s]
+2026-01-12 15:54:51 - INFO - Generating response for prompt (length: 1210 chars)
+2026-01-12 15:54:51 - INFO - Applying chat template...
+2026-01-12 15:54:51 - INFO - Tokenizing input...
+2026-01-12 15:54:51 - INFO - Input tokens: 309
+2026-01-12 15:54:51 - INFO - Generating response...
+2026-01-12 15:54:52 - INFO - Generated response (length: 132 chars)
+2026-01-12 15:54:52 - INFO - Generating response for prompt (length: 1188 chars)
+2026-01-12 15:54:52 - INFO - Applying chat template...
+2026-01-12 15:54:52 - INFO - Tokenizing input...
+2026-01-12 15:54:52 - INFO - Input tokens: 404
+2026-01-12 15:54:52 - INFO - Generating response...
+2026-01-12 15:55:03 - INFO - Generated response (length: 679 chars)
+2026-01-12 15:55:03 - INFO - Generating response for prompt (length: 5954 chars)
+2026-01-12 15:55:03 - INFO - Applying chat template...
+2026-01-12 15:55:03 - INFO - Tokenizing input...
+2026-01-12 15:55:03 - INFO - Input tokens: 1450
+2026-01-12 15:55:03 - INFO - Generating response...
+2026-01-12 15:55:14 - INFO - Generated response (length: 783 chars)
+2026-01-12 15:55:14 - INFO - Generating response for prompt (length: 12736 chars)
+2026-01-12 15:55:14 - INFO - Applying chat template...
+2026-01-12 15:55:14 - INFO - Tokenizing input...
+2026-01-12 15:55:14 - INFO - Input tokens: 4162
+2026-01-12 15:55:14 - INFO - Generating response...
+2026-01-12 15:55:22 - INFO - Generated response (length: 570 chars)
+2026-01-12 15:55:22 - INFO - Generating response for prompt (length: 1288 chars)
+2026-01-12 15:55:22 - INFO - Applying chat template...
+2026-01-12 15:55:22 - INFO - Tokenizing input...
+2026-01-12 15:55:22 - INFO - Input tokens: 334
+2026-01-12 15:55:22 - INFO - Generating response...
+2026-01-12 15:55:24 - INFO - Generated response (length: 119 chars)
+2026-01-12 15:55:24 - INFO - Generating response for prompt (length: 1241 chars)
+2026-01-12 15:55:24 - INFO - Applying chat template...
+2026-01-12 15:55:24 - INFO - Tokenizing input...
+2026-01-12 15:55:24 - INFO - Input tokens: 317
+2026-01-12 15:55:24 - INFO - Generating response...
+2026-01-12 15:55:25 - INFO - Generated response (length: 96 chars)
+  -> PARTIAL | found 10 cols | gold hit 2/2 | leakage 1/17
+
+============================================================
+Query 2/16 - PRED2: Build a model to identify patients at risk for chronic hepatitis
+Gold columns: ['injections', 'transfusion', 'vh_amn']
+============================================================
+[2/16] Method 1/7: Simple
+  -> PARTIAL | found 54 cols | gold hit 3/3 | leakage 13/16
+[2/16] Method 2/7: Descriptions
+  -> PARTIAL | found 65 cols | gold hit 3/3 | leakage 13/16
+[2/16] Method 3/7: Graph
+  -> WRONG | found 48 cols | gold hit 1/3 | leakage 16/16
+[2/16] Method 4/7: Semantic RAG
+  -> WRONG | found 9 cols | gold hit 0/3 | leakage 4/16
+[2/16] Method 5/7: Hybrid RAG
+  -> WRONG | found 7 cols | gold hit 0/3 | leakage 1/16
+[2/16] Method 6/7: RRF Hybrid
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 163.54it/s]
+2026-01-12 15:55:25 - INFO - Generating response for prompt (length: 1207 chars)
+2026-01-12 15:55:25 - INFO - Applying chat template...
+2026-01-12 15:55:25 - INFO - Tokenizing input...
+2026-01-12 15:55:25 - INFO - Input tokens: 300
+2026-01-12 15:55:25 - INFO - Generating response...
+2026-01-12 15:55:27 - INFO - Generated response (length: 111 chars)
+  -> WRONG | found 8 cols | gold hit 2/3 | leakage 1/16
+[2/16] Method 7/7: RRF Markov
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 171.20it/s]
+2026-01-12 15:55:27 - INFO - Generating response for prompt (length: 1329 chars)
+2026-01-12 15:55:27 - INFO - Applying chat template...
+2026-01-12 15:55:27 - INFO - Tokenizing input...
+2026-01-12 15:55:27 - INFO - Input tokens: 351
+2026-01-12 15:55:27 - INFO - Generating response...
+2026-01-12 15:55:29 - INFO - Generated response (length: 120 chars)
+2026-01-12 15:55:29 - INFO - Generating response for prompt (length: 1191 chars)
+2026-01-12 15:55:29 - INFO - Applying chat template...
+2026-01-12 15:55:29 - INFO - Tokenizing input...
+2026-01-12 15:55:29 - INFO - Input tokens: 405
+2026-01-12 15:55:29 - INFO - Generating response...
+2026-01-12 15:55:38 - INFO - Generated response (length: 707 chars)
+2026-01-12 15:55:38 - INFO - Generating response for prompt (length: 5957 chars)
+2026-01-12 15:55:38 - INFO - Applying chat template...
+2026-01-12 15:55:38 - INFO - Tokenizing input...
+2026-01-12 15:55:38 - INFO - Input tokens: 1451
+2026-01-12 15:55:38 - INFO - Generating response...
+2026-01-12 15:55:56 - INFO - Generated response (length: 1247 chars)
+2026-01-12 15:55:56 - INFO - Generating response for prompt (length: 12739 chars)
+2026-01-12 15:55:56 - INFO - Applying chat template...
+2026-01-12 15:55:56 - INFO - Tokenizing input...
+2026-01-12 15:55:56 - INFO - Input tokens: 4163
+2026-01-12 15:55:56 - INFO - Generating response...
+2026-01-12 15:56:04 - INFO - Generated response (length: 522 chars)
+2026-01-12 15:56:04 - INFO - Generating response for prompt (length: 1214 chars)
+2026-01-12 15:56:04 - INFO - Applying chat template...
+2026-01-12 15:56:04 - INFO - Tokenizing input...
+2026-01-12 15:56:04 - INFO - Input tokens: 302
+2026-01-12 15:56:04 - INFO - Generating response...
+2026-01-12 15:56:05 - INFO - Generated response (length: 113 chars)
+2026-01-12 15:56:05 - INFO - Generating response for prompt (length: 1232 chars)
+2026-01-12 15:56:05 - INFO - Applying chat template...
+2026-01-12 15:56:05 - INFO - Tokenizing input...
+2026-01-12 15:56:05 - INFO - Input tokens: 314
+2026-01-12 15:56:05 - INFO - Generating response...
+2026-01-12 15:56:07 - INFO - Generated response (length: 91 chars)
+  -> WRONG | found 10 cols | gold hit 1/3 | leakage 5/16
+
+============================================================
+Query 3/16 - PRED3: Predict which patients will develop fatty liver disease (steatosis)
+Gold columns: ['alcoholism', 'obesity']
+============================================================
+[3/16] Method 1/7: Simple
+  -> PARTIAL | found 59 cols | gold hit 2/2 | leakage 8/9
+[3/16] Method 2/7: Descriptions
+  -> WRONG | found 16 cols | gold hit 0/2 | leakage 6/9
+[3/16] Method 3/7: Graph
+  -> PARTIAL | found 42 cols | gold hit 2/2 | leakage 3/9
+[3/16] Method 4/7: Semantic RAG
+  -> WRONG | found 9 cols | gold hit 1/2 | leakage 1/9
+[3/16] Method 5/7: Hybrid RAG
+  -> PARTIAL | found 8 cols | gold hit 2/2 | leakage 5/9
+[3/16] Method 6/7: RRF Hybrid
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 161.50it/s]
+2026-01-12 15:56:07 - INFO - Generating response for prompt (length: 1220 chars)
+2026-01-12 15:56:07 - INFO - Applying chat template...
+2026-01-12 15:56:07 - INFO - Tokenizing input...
+2026-01-12 15:56:07 - INFO - Input tokens: 306
+2026-01-12 15:56:07 - INFO - Generating response...
+2026-01-12 15:56:10 - INFO - Generated response (length: 131 chars)
+  -> PARTIAL | found 10 cols | gold hit 2/2 | leakage 1/9
+[3/16] Method 7/7: RRF Markov
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 87.79it/s]
+2026-01-12 15:56:10 - INFO - Generating response for prompt (length: 1208 chars)
+2026-01-12 15:56:10 - INFO - Applying chat template...
+2026-01-12 15:56:10 - INFO - Tokenizing input...
+2026-01-12 15:56:10 - INFO - Input tokens: 296
+2026-01-12 15:56:10 - INFO - Generating response...
+2026-01-12 15:56:11 - INFO - Generated response (length: 79 chars)
+2026-01-12 15:56:11 - INFO - Generating response for prompt (length: 1180 chars)
+2026-01-12 15:56:11 - INFO - Applying chat template...
+2026-01-12 15:56:11 - INFO - Tokenizing input...
+2026-01-12 15:56:11 - INFO - Input tokens: 405
+2026-01-12 15:56:11 - INFO - Generating response...
+2026-01-12 15:56:12 - INFO - Generated response (length: 47 chars)
+2026-01-12 15:56:12 - INFO - Generating response for prompt (length: 5946 chars)
+2026-01-12 15:56:12 - INFO - Applying chat template...
+2026-01-12 15:56:12 - INFO - Tokenizing input...
+2026-01-12 15:56:12 - INFO - Input tokens: 1451
+2026-01-12 15:56:12 - INFO - Generating response...
+2026-01-12 15:56:12 - INFO - Generated response (length: 35 chars)
+2026-01-12 15:56:12 - INFO - Generating response for prompt (length: 12728 chars)
+2026-01-12 15:56:12 - INFO - Applying chat template...
+2026-01-12 15:56:12 - INFO - Tokenizing input...
+2026-01-12 15:56:13 - INFO - Input tokens: 4163
+2026-01-12 15:56:13 - INFO - Generating response...
+2026-01-12 15:56:15 - INFO - Generated response (length: 159 chars)
+2026-01-12 15:56:15 - INFO - Generating response for prompt (length: 1317 chars)
+2026-01-12 15:56:15 - INFO - Applying chat template...
+2026-01-12 15:56:15 - INFO - Tokenizing input...
+2026-01-12 15:56:15 - INFO - Input tokens: 361
+2026-01-12 15:56:15 - INFO - Generating response...
+2026-01-12 15:56:17 - INFO - Generated response (length: 94 chars)
+2026-01-12 15:56:17 - INFO - Generating response for prompt (length: 1208 chars)
+2026-01-12 15:56:17 - INFO - Applying chat template...
+2026-01-12 15:56:17 - INFO - Tokenizing input...
+2026-01-12 15:56:17 - INFO - Input tokens: 315
+2026-01-12 15:56:17 - INFO - Generating response...
+2026-01-12 15:56:18 - INFO - Generated response (length: 115 chars)
+  -> PARTIAL | found 6 cols | gold hit 2/2 | leakage 0/9
+
+============================================================
+Query 4/16 - PRED4: I need to forecast elevated bilirubin levels in patients
+Gold columns: ['ChHepatitis', 'Cirrhosis', 'Hyperbilirubinemia', 'PBC', 'gallstones']
+============================================================
+[4/16] Method 1/7: Simple
+  -> WRONG | found 2 cols | gold hit 1/5 | leakage 0/3
+[4/16] Method 2/7: Descriptions
+  -> WRONG | found 2 cols | gold hit 1/5 | leakage 0/3
+[4/16] Method 3/7: Graph
+  -> WRONG | found 12 cols | gold hit 1/5 | leakage 3/3
+[4/16] Method 4/7: Semantic RAG
+  -> WRONG | found 9 cols | gold hit 2/5 | leakage 0/3
+[4/16] Method 5/7: Hybrid RAG
+  -> PARTIAL | found 9 cols | gold hit 5/5 | leakage 3/3
+[4/16] Method 6/7: RRF Hybrid
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 175.27it/s]
+2026-01-12 15:56:18 - INFO - Generating response for prompt (length: 1242 chars)
+2026-01-12 15:56:18 - INFO - Applying chat template...
+2026-01-12 15:56:18 - INFO - Tokenizing input...
+2026-01-12 15:56:18 - INFO - Input tokens: 321
+2026-01-12 15:56:18 - INFO - Generating response...
+2026-01-12 15:56:20 - INFO - Generated response (length: 100 chars)
+  -> WRONG | found 7 cols | gold hit 3/5 | leakage 0/3
+[4/16] Method 7/7: RRF Markov
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 164.52it/s]
+2026-01-12 15:56:20 - INFO - Generating response for prompt (length: 1273 chars)
+2026-01-12 15:56:20 - INFO - Applying chat template...
+2026-01-12 15:56:20 - INFO - Tokenizing input...
+2026-01-12 15:56:20 - INFO - Input tokens: 338
+2026-01-12 15:56:20 - INFO - Generating response...
+2026-01-12 15:56:22 - INFO - Generated response (length: 119 chars)
+2026-01-12 15:56:22 - INFO - Generating response for prompt (length: 1158 chars)
+2026-01-12 15:56:22 - INFO - Applying chat template...
+2026-01-12 15:56:22 - INFO - Tokenizing input...
+2026-01-12 15:56:22 - INFO - Input tokens: 397
+2026-01-12 15:56:22 - INFO - Generating response...
+2026-01-12 15:56:32 - INFO - Generated response (length: 748 chars)
+2026-01-12 15:56:32 - INFO - Generating response for prompt (length: 5924 chars)
+2026-01-12 15:56:32 - INFO - Applying chat template...
+2026-01-12 15:56:32 - INFO - Tokenizing input...
+2026-01-12 15:56:32 - INFO - Input tokens: 1443
+2026-01-12 15:56:32 - INFO - Generating response...
+2026-01-12 15:56:32 - INFO - Generated response (length: 28 chars)
+2026-01-12 15:56:32 - INFO - Generating response for prompt (length: 12706 chars)
+2026-01-12 15:56:32 - INFO - Applying chat template...
+2026-01-12 15:56:32 - INFO - Tokenizing input...
+2026-01-12 15:56:32 - INFO - Input tokens: 4155
+2026-01-12 15:56:32 - INFO - Generating response...
+2026-01-12 15:56:38 - INFO - Generated response (length: 364 chars)
+2026-01-12 15:56:38 - INFO - Generating response for prompt (length: 1254 chars)
+2026-01-12 15:56:38 - INFO - Applying chat template...
+2026-01-12 15:56:38 - INFO - Tokenizing input...
+2026-01-12 15:56:38 - INFO - Input tokens: 323
+2026-01-12 15:56:38 - INFO - Generating response...
+2026-01-12 15:56:39 - INFO - Generated response (length: 104 chars)
+2026-01-12 15:56:39 - INFO - Generating response for prompt (length: 1211 chars)
+2026-01-12 15:56:39 - INFO - Applying chat template...
+2026-01-12 15:56:39 - INFO - Tokenizing input...
+2026-01-12 15:56:39 - INFO - Input tokens: 310
+2026-01-12 15:56:39 - INFO - Generating response...
+2026-01-12 15:56:40 - INFO - Generated response (length: 57 chars)
+  -> PARTIAL | found 10 cols | gold hit 5/5 | leakage 0/3
+
+============================================================
+Query 5/16 - PRED5: Predict toxic hepatitis occurrence
+Gold columns: ['alcoholism', 'hepatotoxic']
+============================================================
+[5/16] Method 1/7: Simple
+  -> PARTIAL | found 61 cols | gold hit 2/2 | leakage 9/10
+[5/16] Method 2/7: Descriptions
+  -> WRONG | found 2 cols | gold hit 0/2 | leakage 0/10
+[5/16] Method 3/7: Graph
+  -> WRONG | found 30 cols | gold hit 0/2 | leakage 10/10
+[5/16] Method 4/7: Semantic RAG
+  -> PARTIAL | found 8 cols | gold hit 2/2 | leakage 0/10
+[5/16] Method 5/7: Hybrid RAG
+  -> PARTIAL | found 4 cols | gold hit 2/2 | leakage 0/10
+[5/16] Method 6/7: RRF Hybrid
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 182.42it/s]
+2026-01-12 15:56:40 - INFO - Generating response for prompt (length: 1183 chars)
+2026-01-12 15:56:40 - INFO - Applying chat template...
+2026-01-12 15:56:40 - INFO - Tokenizing input...
+2026-01-12 15:56:40 - INFO - Input tokens: 295
+2026-01-12 15:56:40 - INFO - Generating response...
+2026-01-12 15:56:40 - INFO - Generated response (length: 24 chars)
+  -> WRONG | found 2 cols | gold hit 0/2 | leakage 0/10
+[5/16] Method 7/7: RRF Markov
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 174.81it/s]
+2026-01-12 15:56:40 - INFO - Generating response for prompt (length: 1273 chars)
+2026-01-12 15:56:40 - INFO - Applying chat template...
+2026-01-12 15:56:40 - INFO - Tokenizing input...
+2026-01-12 15:56:40 - INFO - Input tokens: 335
+2026-01-12 15:56:40 - INFO - Generating response...
+2026-01-12 15:56:42 - INFO - Generated response (length: 127 chars)
+2026-01-12 15:56:42 - INFO - Generating response for prompt (length: 1180 chars)
+2026-01-12 15:56:42 - INFO - Applying chat template...
+2026-01-12 15:56:42 - INFO - Tokenizing input...
+2026-01-12 15:56:42 - INFO - Input tokens: 406
+2026-01-12 15:56:42 - INFO - Generating response...
+2026-01-12 15:56:52 - INFO - Generated response (length: 679 chars)
+2026-01-12 15:56:52 - INFO - Generating response for prompt (length: 5946 chars)
+2026-01-12 15:56:52 - INFO - Applying chat template...
+2026-01-12 15:56:52 - INFO - Tokenizing input...
+2026-01-12 15:56:52 - INFO - Input tokens: 1452
+2026-01-12 15:56:52 - INFO - Generating response...
+2026-01-12 15:57:00 - INFO - Generated response (length: 643 chars)
+2026-01-12 15:57:01 - INFO - Generating response for prompt (length: 12728 chars)
+2026-01-12 15:57:01 - INFO - Applying chat template...
+2026-01-12 15:57:01 - INFO - Tokenizing input...
+2026-01-12 15:57:01 - INFO - Input tokens: 4164
+2026-01-12 15:57:01 - INFO - Generating response...
+2026-01-12 15:57:08 - INFO - Generated response (length: 538 chars)
+2026-01-12 15:57:08 - INFO - Generating response for prompt (length: 1292 chars)
+2026-01-12 15:57:08 - INFO - Applying chat template...
+2026-01-12 15:57:08 - INFO - Tokenizing input...
+2026-01-12 15:57:08 - INFO - Input tokens: 337
+2026-01-12 15:57:08 - INFO - Generating response...
+2026-01-12 15:57:10 - INFO - Generated response (length: 112 chars)
+2026-01-12 15:57:10 - INFO - Generating response for prompt (length: 1240 chars)
+2026-01-12 15:57:10 - INFO - Applying chat template...
+2026-01-12 15:57:10 - INFO - Tokenizing input...
+2026-01-12 15:57:10 - INFO - Input tokens: 316
+2026-01-12 15:57:10 - INFO - Generating response...
+2026-01-12 15:57:11 - INFO - Generated response (length: 92 chars)
+  -> WRONG | found 10 cols | gold hit 1/2 | leakage 0/10
+
+============================================================
+Query 6/16 - PRED6: Build a classifier for primary biliary cholangitis (PBC)
+Gold columns: ['age', 'sex']
+============================================================
+[6/16] Method 1/7: Simple
+  -> PARTIAL | found 54 cols | gold hit 2/2 | leakage 5/12
+[6/16] Method 2/7: Descriptions
+  -> WRONG | found 55 cols | gold hit 0/2 | leakage 11/12
+[6/16] Method 3/7: Graph
+  -> WRONG | found 44 cols | gold hit 0/2 | leakage 7/12
+[6/16] Method 4/7: Semantic RAG
+  -> WRONG | found 8 cols | gold hit 0/2 | leakage 0/12
+[6/16] Method 5/7: Hybrid RAG
+  -> WRONG | found 9 cols | gold hit 1/2 | leakage 7/12
+[6/16] Method 6/7: RRF Hybrid
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 162.99it/s]
+2026-01-12 15:57:11 - INFO - Generating response for prompt (length: 1196 chars)
+2026-01-12 15:57:11 - INFO - Applying chat template...
+2026-01-12 15:57:11 - INFO - Tokenizing input...
+2026-01-12 15:57:11 - INFO - Input tokens: 310
+2026-01-12 15:57:11 - INFO - Generating response...
+2026-01-12 15:57:12 - INFO - Generated response (length: 100 chars)
+  -> PARTIAL | found 8 cols | gold hit 2/2 | leakage 1/12
+[6/16] Method 7/7: RRF Markov
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 160.14it/s]
+2026-01-12 15:57:12 - INFO - Generating response for prompt (length: 1230 chars)
+2026-01-12 15:57:12 - INFO - Applying chat template...
+2026-01-12 15:57:12 - INFO - Tokenizing input...
+2026-01-12 15:57:12 - INFO - Input tokens: 314
+2026-01-12 15:57:12 - INFO - Generating response...
+2026-01-12 15:57:14 - INFO - Generated response (length: 132 chars)
+2026-01-12 15:57:14 - INFO - Generating response for prompt (length: 1171 chars)
+2026-01-12 15:57:14 - INFO - Applying chat template...
+2026-01-12 15:57:14 - INFO - Tokenizing input...
+2026-01-12 15:57:14 - INFO - Input tokens: 402
+2026-01-12 15:57:14 - INFO - Generating response...
+2026-01-12 15:57:15 - INFO - Generated response (length: 30 chars)
+2026-01-12 15:57:15 - INFO - Generating response for prompt (length: 5937 chars)
+2026-01-12 15:57:15 - INFO - Applying chat template...
+2026-01-12 15:57:15 - INFO - Tokenizing input...
+2026-01-12 15:57:15 - INFO - Input tokens: 1448
+2026-01-12 15:57:15 - INFO - Generating response...
+2026-01-12 15:57:25 - INFO - Generated response (length: 783 chars)
+2026-01-12 15:57:25 - INFO - Generating response for prompt (length: 12719 chars)
+2026-01-12 15:57:25 - INFO - Applying chat template...
+2026-01-12 15:57:25 - INFO - Tokenizing input...
+2026-01-12 15:57:25 - INFO - Input tokens: 4160
+2026-01-12 15:57:25 - INFO - Generating response...
+2026-01-12 15:57:25 - INFO - Generated response (length: 18 chars)
+2026-01-12 15:57:25 - INFO - Generating response for prompt (length: 1251 chars)
+2026-01-12 15:57:25 - INFO - Applying chat template...
+2026-01-12 15:57:25 - INFO - Tokenizing input...
+2026-01-12 15:57:25 - INFO - Input tokens: 317
+2026-01-12 15:57:25 - INFO - Generating response...
+2026-01-12 15:57:26 - INFO - Generated response (length: 18 chars)
+2026-01-12 15:57:26 - INFO - Generating response for prompt (length: 1177 chars)
+2026-01-12 15:57:26 - INFO - Applying chat template...
+2026-01-12 15:57:26 - INFO - Tokenizing input...
+2026-01-12 15:57:26 - INFO - Input tokens: 299
+2026-01-12 15:57:26 - INFO - Generating response...
+2026-01-12 15:57:27 - INFO - Generated response (length: 124 chars)
+  -> PARTIAL | found 10 cols | gold hit 2/2 | leakage 2/12
+
+============================================================
+Query 7/16 - PRED7: Identify patients likely to have encephalopathy
+Gold columns: ['Cirrhosis', 'PBC']
+============================================================
+[7/16] Method 1/7: Simple
+  -> WRONG | found 1 cols | gold hit 0/2 | leakage 0/3
+[7/16] Method 2/7: Descriptions
+  -> PARTIAL | found 65 cols | gold hit 2/2 | leakage 3/3
+[7/16] Method 3/7: Graph
+  -> WRONG | found 1 cols | gold hit 0/2 | leakage 0/3
+[7/16] Method 4/7: Semantic RAG
+  -> WRONG | found 1 cols | gold hit 0/2 | leakage 0/3
+[7/16] Method 5/7: Hybrid RAG
+  -> PARTIAL | found 10 cols | gold hit 2/2 | leakage 3/3
+[7/16] Method 6/7: RRF Hybrid
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 168.68it/s]
+2026-01-12 15:57:27 - INFO - Generating response for prompt (length: 1210 chars)
+2026-01-12 15:57:27 - INFO - Applying chat template...
+2026-01-12 15:57:27 - INFO - Tokenizing input...
+2026-01-12 15:57:27 - INFO - Input tokens: 304
+2026-01-12 15:57:27 - INFO - Generating response...
+2026-01-12 15:57:29 - INFO - Generated response (length: 121 chars)
+  -> PARTIAL | found 9 cols | gold hit 2/2 | leakage 0/3
+[7/16] Method 7/7: RRF Markov
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 177.42it/s]
+2026-01-12 15:57:29 - INFO - Generating response for prompt (length: 1208 chars)
+2026-01-12 15:57:29 - INFO - Applying chat template...
+2026-01-12 15:57:29 - INFO - Tokenizing input...
+2026-01-12 15:57:29 - INFO - Input tokens: 310
+2026-01-12 15:57:29 - INFO - Generating response...
+2026-01-12 15:57:31 - INFO - Generated response (length: 135 chars)
+2026-01-12 15:57:31 - INFO - Generating response for prompt (length: 1163 chars)
+2026-01-12 15:57:31 - INFO - Applying chat template...
+2026-01-12 15:57:31 - INFO - Tokenizing input...
+2026-01-12 15:57:31 - INFO - Input tokens: 399
+2026-01-12 15:57:31 - INFO - Generating response...
+2026-01-12 15:57:40 - INFO - Generated response (length: 686 chars)
+2026-01-12 15:57:40 - INFO - Generating response for prompt (length: 5929 chars)
+2026-01-12 15:57:40 - INFO - Applying chat template...
+2026-01-12 15:57:40 - INFO - Tokenizing input...
+2026-01-12 15:57:40 - INFO - Input tokens: 1445
+2026-01-12 15:57:40 - INFO - Generating response...
+2026-01-12 15:57:40 - INFO - Generated response (length: 12 chars)
+2026-01-12 15:57:40 - INFO - Generating response for prompt (length: 12711 chars)
+2026-01-12 15:57:40 - INFO - Applying chat template...
+2026-01-12 15:57:40 - INFO - Tokenizing input...
+2026-01-12 15:57:40 - INFO - Input tokens: 4157
+2026-01-12 15:57:40 - INFO - Generating response...
+2026-01-12 15:57:41 - INFO - Generated response (length: 12 chars)
+2026-01-12 15:57:41 - INFO - Generating response for prompt (length: 1222 chars)
+2026-01-12 15:57:41 - INFO - Applying chat template...
+2026-01-12 15:57:41 - INFO - Tokenizing input...
+2026-01-12 15:57:41 - INFO - Input tokens: 311
+2026-01-12 15:57:41 - INFO - Generating response...
+2026-01-12 15:57:42 - INFO - Generated response (length: 112 chars)
+2026-01-12 15:57:42 - INFO - Generating response for prompt (length: 1222 chars)
+2026-01-12 15:57:42 - INFO - Applying chat template...
+2026-01-12 15:57:42 - INFO - Tokenizing input...
+2026-01-12 15:57:42 - INFO - Input tokens: 311
+2026-01-12 15:57:42 - INFO - Generating response...
+2026-01-12 15:57:44 - INFO - Generated response (length: 112 chars)
+  -> PARTIAL | found 10 cols | gold hit 2/2 | leakage 0/3
+
+============================================================
+Query 8/16 - PRED8: Predict bleeding risk in liver patients
+Gold columns: ['inr', 'platelet']
+============================================================
+[8/16] Method 1/7: Simple
+  -> WRONG | found 55 cols | gold hit 0/2
+[8/16] Method 2/7: Descriptions
+  -> WRONG | found 1 cols | gold hit 0/2
+[8/16] Method 3/7: Graph
+  -> WRONG | found 1 cols | gold hit 0/2
+[8/16] Method 4/7: Semantic RAG
+  -> WRONG | found 8 cols | gold hit 0/2
+[8/16] Method 5/7: Hybrid RAG
+  -> WRONG | found 8 cols | gold hit 0/2
+[8/16] Method 6/7: RRF Hybrid
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 172.04it/s]
+2026-01-12 15:57:44 - INFO - Generating response for prompt (length: 1195 chars)
+2026-01-12 15:57:44 - INFO - Applying chat template...
+2026-01-12 15:57:44 - INFO - Tokenizing input...
+2026-01-12 15:57:44 - INFO - Input tokens: 298
+2026-01-12 15:57:44 - INFO - Generating response...
+2026-01-12 15:57:44 - INFO - Generated response (length: 31 chars)
+  -> PARTIAL | found 3 cols | gold hit 2/2
+[8/16] Method 7/7: RRF Markov
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 180.55it/s]
+2026-01-12 15:57:44 - INFO - Generating response for prompt (length: 1200 chars)
+2026-01-12 15:57:44 - INFO - Applying chat template...
+2026-01-12 15:57:44 - INFO - Tokenizing input...
+2026-01-12 15:57:44 - INFO - Input tokens: 301
+2026-01-12 15:57:44 - INFO - Generating response...
+2026-01-12 15:57:46 - INFO - Generated response (length: 88 chars)
+2026-01-12 15:57:46 - INFO - Generating response for prompt (length: 1168 chars)
+2026-01-12 15:57:46 - INFO - Applying chat template...
+2026-01-12 15:57:46 - INFO - Tokenizing input...
+2026-01-12 15:57:46 - INFO - Input tokens: 400
+2026-01-12 15:57:46 - INFO - Generating response...
+2026-01-12 15:57:46 - INFO - Generated response (length: 23 chars)
+2026-01-12 15:57:46 - INFO - Generating response for prompt (length: 5934 chars)
+2026-01-12 15:57:46 - INFO - Applying chat template...
+2026-01-12 15:57:46 - INFO - Tokenizing input...
+2026-01-12 15:57:46 - INFO - Input tokens: 1446
+2026-01-12 15:57:46 - INFO - Generating response...
+2026-01-12 15:57:46 - INFO - Generated response (length: 11 chars)
+2026-01-12 15:57:46 - INFO - Generating response for prompt (length: 12716 chars)
+2026-01-12 15:57:46 - INFO - Applying chat template...
+2026-01-12 15:57:46 - INFO - Tokenizing input...
+2026-01-12 15:57:46 - INFO - Input tokens: 4158
+2026-01-12 15:57:46 - INFO - Generating response...
+2026-01-12 15:57:56 - INFO - Generated response (length: 689 chars)
+2026-01-12 15:57:56 - INFO - Generating response for prompt (length: 1245 chars)
+2026-01-12 15:57:56 - INFO - Applying chat template...
+2026-01-12 15:57:56 - INFO - Tokenizing input...
+2026-01-12 15:57:56 - INFO - Input tokens: 315
+2026-01-12 15:57:56 - INFO - Generating response...
+2026-01-12 15:57:58 - INFO - Generated response (length: 109 chars)
+2026-01-12 15:57:58 - INFO - Generating response for prompt (length: 1222 chars)
+2026-01-12 15:57:58 - INFO - Applying chat template...
+2026-01-12 15:57:58 - INFO - Tokenizing input...
+2026-01-12 15:57:58 - INFO - Input tokens: 305
+2026-01-12 15:57:58 - INFO - Generating response...
+2026-01-12 15:57:59 - INFO - Generated response (length: 102 chars)
+  -> PARTIAL | found 8 cols | gold hit 2/2
+
+============================================================
+Query 9/16 - PRED9: Forecast which patients will develop ascites
+Gold columns: ['proteins']
+============================================================
+[9/16] Method 1/7: Simple
+  -> WRONG | found 1 cols | gold hit 0/1
+[9/16] Method 2/7: Descriptions
+  -> WRONG | found 1 cols | gold hit 0/1
+[9/16] Method 3/7: Graph
+  -> PARTIAL | found 58 cols | gold hit 1/1
+[9/16] Method 4/7: Semantic RAG
+  -> WRONG | found 10 cols | gold hit 0/1
+[9/16] Method 5/7: Hybrid RAG
+  -> WRONG | found 9 cols | gold hit 0/1
+[9/16] Method 6/7: RRF Hybrid
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 171.92it/s]
+2026-01-12 15:57:59 - INFO - Generating response for prompt (length: 1205 chars)
+2026-01-12 15:57:59 - INFO - Applying chat template...
+2026-01-12 15:57:59 - INFO - Tokenizing input...
+2026-01-12 15:57:59 - INFO - Input tokens: 299
+2026-01-12 15:57:59 - INFO - Generating response...
+2026-01-12 15:58:01 - INFO - Generated response (length: 132 chars)
+  -> PARTIAL | found 10 cols | gold hit 1/1
+[9/16] Method 7/7: RRF Markov
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 171.67it/s]
+2026-01-12 15:58:01 - INFO - Generating response for prompt (length: 1237 chars)
+2026-01-12 15:58:01 - INFO - Applying chat template...
+2026-01-12 15:58:01 - INFO - Tokenizing input...
+2026-01-12 15:58:01 - INFO - Input tokens: 314
+2026-01-12 15:58:01 - INFO - Generating response...
+2026-01-12 15:58:03 - INFO - Generated response (length: 123 chars)
+2026-01-12 15:58:03 - INFO - Generating response for prompt (length: 1162 chars)
+2026-01-12 15:58:03 - INFO - Applying chat template...
+2026-01-12 15:58:03 - INFO - Tokenizing input...
+2026-01-12 15:58:03 - INFO - Input tokens: 398
+2026-01-12 15:58:03 - INFO - Generating response...
+2026-01-12 15:58:14 - INFO - Generated response (length: 819 chars)
+2026-01-12 15:58:14 - INFO - Generating response for prompt (length: 5928 chars)
+2026-01-12 15:58:14 - INFO - Applying chat template...
+2026-01-12 15:58:14 - INFO - Tokenizing input...
+2026-01-12 15:58:14 - INFO - Input tokens: 1444
+2026-01-12 15:58:14 - INFO - Generating response...
+2026-01-12 15:58:21 - INFO - Generated response (length: 487 chars)
+2026-01-12 15:58:21 - INFO - Generating response for prompt (length: 12710 chars)
+2026-01-12 15:58:21 - INFO - Applying chat template...
+2026-01-12 15:58:21 - INFO - Tokenizing input...
+2026-01-12 15:58:21 - INFO - Input tokens: 4156
+2026-01-12 15:58:21 - INFO - Generating response...
+2026-01-12 15:58:24 - INFO - Generated response (length: 264 chars)
+2026-01-12 15:58:24 - INFO - Generating response for prompt (length: 1258 chars)
+2026-01-12 15:58:24 - INFO - Applying chat template...
+2026-01-12 15:58:24 - INFO - Tokenizing input...
+2026-01-12 15:58:24 - INFO - Input tokens: 326
+2026-01-12 15:58:24 - INFO - Generating response...
+2026-01-12 15:58:26 - INFO - Generated response (length: 117 chars)
+2026-01-12 15:58:26 - INFO - Generating response for prompt (length: 1216 chars)
+2026-01-12 15:58:26 - INFO - Applying chat template...
+2026-01-12 15:58:26 - INFO - Tokenizing input...
+2026-01-12 15:58:26 - INFO - Input tokens: 315
+2026-01-12 15:58:26 - INFO - Generating response...
+2026-01-12 15:58:28 - INFO - Generated response (length: 107 chars)
+  -> PARTIAL | found 10 cols | gold hit 1/1
+
+============================================================
+Query 10/16 - PRED10: Predict reactive hepatitis in patients
+Gold columns: ['hepatotoxic']
+============================================================
+[10/16] Method 1/7: Simple
+  -> PARTIAL | found 67 cols | gold hit 1/1 | leakage 9/9
+[10/16] Method 2/7: Descriptions
+  -> WRONG | found 41 cols | gold hit 0/1 | leakage 7/9
+[10/16] Method 3/7: Graph
+  -> PARTIAL | found 21 cols | gold hit 1/1 | leakage 3/9
+[10/16] Method 4/7: Semantic RAG
+  -> PARTIAL | found 9 cols | gold hit 1/1 | leakage 0/9
+[10/16] Method 5/7: Hybrid RAG
+  -> WRONG | found 10 cols | gold hit 0/1 | leakage 4/9
+[10/16] Method 6/7: RRF Hybrid
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 181.14it/s]
+2026-01-12 15:58:28 - INFO - Generating response for prompt (length: 1187 chars)
+2026-01-12 15:58:28 - INFO - Applying chat template...
+2026-01-12 15:58:28 - INFO - Tokenizing input...
+2026-01-12 15:58:28 - INFO - Input tokens: 296
+2026-01-12 15:58:28 - INFO - Generating response...
+2026-01-12 15:58:29 - INFO - Generated response (length: 94 chars)
+  -> PARTIAL | found 7 cols | gold hit 1/1 | leakage 0/9
+[10/16] Method 7/7: RRF Markov
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 182.89it/s]
+2026-01-12 15:58:29 - INFO - Generating response for prompt (length: 1277 chars)
+2026-01-12 15:58:29 - INFO - Applying chat template...
+2026-01-12 15:58:29 - INFO - Tokenizing input...
+2026-01-12 15:58:29 - INFO - Input tokens: 336
+2026-01-12 15:58:29 - INFO - Generating response...
+2026-01-12 15:58:31 - INFO - Generated response (length: 127 chars)
+2026-01-12 15:58:31 - INFO - Generating response for prompt (length: 1169 chars)
+2026-01-12 15:58:31 - INFO - Applying chat template...
+2026-01-12 15:58:31 - INFO - Tokenizing input...
+2026-01-12 15:58:31 - INFO - Input tokens: 401
+2026-01-12 15:58:31 - INFO - Generating response...
+2026-01-12 15:58:33 - INFO - Generated response (length: 158 chars)
+2026-01-12 15:58:33 - INFO - Generating response for prompt (length: 5935 chars)
+2026-01-12 15:58:33 - INFO - Applying chat template...
+2026-01-12 15:58:33 - INFO - Tokenizing input...
+2026-01-12 15:58:33 - INFO - Input tokens: 1447
+2026-01-12 15:58:33 - INFO - Generating response...
+2026-01-12 15:58:44 - INFO - Generated response (length: 814 chars)
+2026-01-12 15:58:44 - INFO - Generating response for prompt (length: 12717 chars)
+2026-01-12 15:58:44 - INFO - Applying chat template...
+2026-01-12 15:58:44 - INFO - Tokenizing input...
+2026-01-12 15:58:44 - INFO - Input tokens: 4159
+2026-01-12 15:58:44 - INFO - Generating response...
+2026-01-12 15:58:49 - INFO - Generated response (length: 326 chars)
+2026-01-12 15:58:49 - INFO - Generating response for prompt (length: 1164 chars)
+2026-01-12 15:58:49 - INFO - Applying chat template...
+2026-01-12 15:58:49 - INFO - Tokenizing input...
+2026-01-12 15:58:49 - INFO - Input tokens: 288
+2026-01-12 15:58:49 - INFO - Generating response...
+2026-01-12 15:58:51 - INFO - Generated response (length: 134 chars)
+2026-01-12 15:58:51 - INFO - Generating response for prompt (length: 1163 chars)
+2026-01-12 15:58:51 - INFO - Applying chat template...
+2026-01-12 15:58:51 - INFO - Tokenizing input...
+2026-01-12 15:58:51 - INFO - Input tokens: 303
+2026-01-12 15:58:51 - INFO - Generating response...
+2026-01-12 15:58:53 - INFO - Generated response (length: 121 chars)
+  -> PARTIAL | found 10 cols | gold hit 1/1 | leakage 0/9
+
+============================================================
+Query 11/16 - PRED11: Build a model to predict fibrosis progression
+Gold columns: ['ChHepatitis']
+============================================================
+[11/16] Method 1/7: Simple
+  -> WRONG | found 14 cols | gold hit 0/1 | leakage 0/1
+[11/16] Method 2/7: Descriptions
+  -> PARTIAL | found 68 cols | gold hit 1/1 | leakage 1/1
+[11/16] Method 3/7: Graph
+  -> WRONG | found 29 cols | gold hit 0/1 | leakage 0/1
+[11/16] Method 4/7: Semantic RAG
+  -> PARTIAL | found 10 cols | gold hit 1/1 | leakage 1/1
+[11/16] Method 5/7: Hybrid RAG
+  -> PARTIAL | found 10 cols | gold hit 1/1 | leakage 1/1
+[11/16] Method 6/7: RRF Hybrid
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 165.83it/s]
+2026-01-12 15:58:53 - INFO - Generating response for prompt (length: 1184 chars)
+2026-01-12 15:58:53 - INFO - Applying chat template...
+2026-01-12 15:58:53 - INFO - Tokenizing input...
+2026-01-12 15:58:53 - INFO - Input tokens: 297
+2026-01-12 15:58:53 - INFO - Generating response...
+2026-01-12 15:58:55 - INFO - Generated response (length: 124 chars)
+  -> PARTIAL | found 10 cols | gold hit 1/1 | leakage 1/1
+[11/16] Method 7/7: RRF Markov
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 171.71it/s]
+2026-01-12 15:58:55 - INFO - Generating response for prompt (length: 1212 chars)
+2026-01-12 15:58:55 - INFO - Applying chat template...
+2026-01-12 15:58:55 - INFO - Tokenizing input...
+2026-01-12 15:58:55 - INFO - Input tokens: 308
+2026-01-12 15:58:55 - INFO - Generating response...
+2026-01-12 15:58:57 - INFO - Generated response (length: 113 chars)
+2026-01-12 15:58:57 - INFO - Generating response for prompt (length: 1162 chars)
+2026-01-12 15:58:57 - INFO - Applying chat template...
+2026-01-12 15:58:57 - INFO - Tokenizing input...
+2026-01-12 15:58:57 - INFO - Input tokens: 402
+2026-01-12 15:58:57 - INFO - Generating response...
+2026-01-12 15:58:57 - INFO - Generated response (length: 34 chars)
+2026-01-12 15:58:57 - INFO - Generating response for prompt (length: 5928 chars)
+2026-01-12 15:58:57 - INFO - Applying chat template...
+2026-01-12 15:58:57 - INFO - Tokenizing input...
+2026-01-12 15:58:57 - INFO - Input tokens: 1448
+2026-01-12 15:58:57 - INFO - Generating response...
+2026-01-12 15:58:57 - INFO - Generated response (length: 22 chars)
+2026-01-12 15:58:57 - INFO - Generating response for prompt (length: 12710 chars)
+2026-01-12 15:58:57 - INFO - Applying chat template...
+2026-01-12 15:58:57 - INFO - Tokenizing input...
+2026-01-12 15:58:57 - INFO - Input tokens: 4160
+2026-01-12 15:58:57 - INFO - Generating response...
+2026-01-12 15:58:58 - INFO - Generated response (length: 22 chars)
+2026-01-12 15:58:58 - INFO - Generating response for prompt (length: 1182 chars)
+2026-01-12 15:58:58 - INFO - Applying chat template...
+2026-01-12 15:58:58 - INFO - Tokenizing input...
+2026-01-12 15:58:58 - INFO - Input tokens: 300
+2026-01-12 15:58:58 - INFO - Generating response...
+2026-01-12 15:58:59 - INFO - Generated response (length: 110 chars)
+2026-01-12 15:58:59 - INFO - Generating response for prompt (length: 1187 chars)
+2026-01-12 15:58:59 - INFO - Applying chat template...
+2026-01-12 15:58:59 - INFO - Tokenizing input...
+2026-01-12 15:58:59 - INFO - Input tokens: 313
+2026-01-12 15:58:59 - INFO - Generating response...
+2026-01-12 15:59:00 - INFO - Generated response (length: 69 chars)
+  -> PARTIAL | found 10 cols | gold hit 1/1 | leakage 1/1
+
+============================================================
+Query 12/16 - PRED12: Predict hyperbilirubinemia in patients
+Gold columns: ['age', 'sex']
+============================================================
+[12/16] Method 1/7: Simple
+  -> WRONG | found 1 cols | gold hit 0/2 | leakage 0/6
+[12/16] Method 2/7: Descriptions
+  -> WRONG | found 1 cols | gold hit 0/2 | leakage 0/6
+[12/16] Method 3/7: Graph
+  -> WRONG | found 1 cols | gold hit 0/2 | leakage 0/6
+[12/16] Method 4/7: Semantic RAG
+  -> WRONG | found 8 cols | gold hit 0/2 | leakage 0/6
+[12/16] Method 5/7: Hybrid RAG
+  -> PARTIAL | found 6 cols | gold hit 2/2 | leakage 3/6
+[12/16] Method 6/7: RRF Hybrid
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 174.58it/s]
+2026-01-12 15:59:00 - INFO - Generating response for prompt (length: 1141 chars)
+2026-01-12 15:59:00 - INFO - Applying chat template...
+2026-01-12 15:59:00 - INFO - Tokenizing input...
+2026-01-12 15:59:00 - INFO - Input tokens: 291
+2026-01-12 15:59:00 - INFO - Generating response...
+2026-01-12 15:59:02 - INFO - Generated response (length: 130 chars)
+  -> PARTIAL | found 10 cols | gold hit 2/2 | leakage 0/6
+[12/16] Method 7/7: RRF Markov
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 175.01it/s]
+2026-01-12 15:59:02 - INFO - Generating response for prompt (length: 1175 chars)
+2026-01-12 15:59:02 - INFO - Applying chat template...
+2026-01-12 15:59:02 - INFO - Tokenizing input...
+2026-01-12 15:59:02 - INFO - Input tokens: 302
+2026-01-12 15:59:02 - INFO - Generating response...
+2026-01-12 15:59:04 - INFO - Generated response (length: 107 chars)
+2026-01-12 15:59:04 - INFO - Generating response for prompt (length: 1176 chars)
+2026-01-12 15:59:04 - INFO - Applying chat template...
+2026-01-12 15:59:04 - INFO - Tokenizing input...
+2026-01-12 15:59:04 - INFO - Input tokens: 402
+2026-01-12 15:59:04 - INFO - Generating response...
+2026-01-12 15:59:05 - INFO - Generated response (length: 89 chars)
+2026-01-12 15:59:05 - INFO - Generating response for prompt (length: 5942 chars)
+2026-01-12 15:59:05 - INFO - Applying chat template...
+2026-01-12 15:59:05 - INFO - Tokenizing input...
+2026-01-12 15:59:05 - INFO - Input tokens: 1448
+2026-01-12 15:59:05 - INFO - Generating response...
+2026-01-12 15:59:05 - INFO - Generated response (length: 28 chars)
+2026-01-12 15:59:05 - INFO - Generating response for prompt (length: 12724 chars)
+2026-01-12 15:59:05 - INFO - Applying chat template...
+2026-01-12 15:59:05 - INFO - Tokenizing input...
+2026-01-12 15:59:05 - INFO - Input tokens: 4160
+2026-01-12 15:59:05 - INFO - Generating response...
+2026-01-12 15:59:23 - INFO - Generated response (length: 1402 chars)
+2026-01-12 15:59:23 - INFO - Generating response for prompt (length: 1276 chars)
+2026-01-12 15:59:23 - INFO - Applying chat template...
+2026-01-12 15:59:23 - INFO - Tokenizing input...
+2026-01-12 15:59:23 - INFO - Input tokens: 332
+2026-01-12 15:59:23 - INFO - Generating response...
+2026-01-12 15:59:25 - INFO - Generated response (length: 134 chars)
+2026-01-12 15:59:25 - INFO - Generating response for prompt (length: 1276 chars)
+2026-01-12 15:59:25 - INFO - Applying chat template...
+2026-01-12 15:59:25 - INFO - Tokenizing input...
+2026-01-12 15:59:25 - INFO - Input tokens: 332
+2026-01-12 15:59:25 - INFO - Generating response...
+2026-01-12 15:59:27 - INFO - Generated response (length: 134 chars)
+  -> PARTIAL | found 9 cols | gold hit 2/2 | leakage 0/6
+
+============================================================
+Query 13/16 - SEM1: Show me all hepatitis-related columns in the dataset
+Gold columns: ['THepatitis', 'ChHepatitis', 'RHepatitis']
+============================================================
+[13/16] Method 1/7: Simple
+  -> WRONG | found 6 cols | gold hit 2/3
+[13/16] Method 2/7: Descriptions
+  -> WRONG | found 2 cols | gold hit 2/3
+[13/16] Method 3/7: Graph
+  -> WRONG | found 20 cols | gold hit 2/3
+[13/16] Method 4/7: Semantic RAG
+  -> WRONG | found 10 cols | gold hit 2/3
+[13/16] Method 5/7: Hybrid RAG
+  -> WRONG | found 10 cols | gold hit 2/3
+[13/16] Method 6/7: RRF Hybrid
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 183.05it/s]
+2026-01-12 15:59:27 - INFO - Generating response for prompt (length: 1217 chars)
+2026-01-12 15:59:27 - INFO - Applying chat template...
+2026-01-12 15:59:27 - INFO - Tokenizing input...
+2026-01-12 15:59:27 - INFO - Input tokens: 311
+2026-01-12 15:59:27 - INFO - Generating response...
+2026-01-12 15:59:27 - INFO - Generated response (length: 29 chars)
+  -> WRONG | found 2 cols | gold hit 2/3
+[13/16] Method 7/7: RRF Markov
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 195.38it/s]
+2026-01-12 15:59:27 - INFO - Generating response for prompt (length: 1295 chars)
+2026-01-12 15:59:27 - INFO - Applying chat template...
+2026-01-12 15:59:27 - INFO - Tokenizing input...
+2026-01-12 15:59:27 - INFO - Input tokens: 342
+2026-01-12 15:59:27 - INFO - Generating response...
+2026-01-12 15:59:29 - INFO - Generated response (length: 129 chars)
+2026-01-12 15:59:29 - INFO - Generating response for prompt (length: 1165 chars)
+2026-01-12 15:59:29 - INFO - Applying chat template...
+2026-01-12 15:59:29 - INFO - Tokenizing input...
+2026-01-12 15:59:29 - INFO - Input tokens: 398
+2026-01-12 15:59:29 - INFO - Generating response...
+2026-01-12 15:59:37 - INFO - Generated response (length: 582 chars)
+2026-01-12 15:59:37 - INFO - Generating response for prompt (length: 5931 chars)
+2026-01-12 15:59:37 - INFO - Applying chat template...
+2026-01-12 15:59:37 - INFO - Tokenizing input...
+2026-01-12 15:59:37 - INFO - Input tokens: 1444
+2026-01-12 15:59:37 - INFO - Generating response...
+2026-01-12 15:59:45 - INFO - Generated response (length: 638 chars)
+2026-01-12 15:59:45 - INFO - Generating response for prompt (length: 12713 chars)
+2026-01-12 15:59:45 - INFO - Applying chat template...
+2026-01-12 15:59:45 - INFO - Tokenizing input...
+2026-01-12 15:59:45 - INFO - Input tokens: 4156
+2026-01-12 15:59:45 - INFO - Generating response...
+2026-01-12 15:59:47 - INFO - Generated response (length: 160 chars)
+2026-01-12 15:59:47 - INFO - Generating response for prompt (length: 1131 chars)
+2026-01-12 15:59:47 - INFO - Applying chat template...
+2026-01-12 15:59:47 - INFO - Tokenizing input...
+2026-01-12 15:59:47 - INFO - Input tokens: 278
+2026-01-12 15:59:47 - INFO - Generating response...
+2026-01-12 15:59:48 - INFO - Generated response (length: 86 chars)
+2026-01-12 15:59:48 - INFO - Generating response for prompt (length: 1131 chars)
+2026-01-12 15:59:48 - INFO - Applying chat template...
+2026-01-12 15:59:48 - INFO - Tokenizing input...
+2026-01-12 15:59:48 - INFO - Input tokens: 278
+2026-01-12 15:59:48 - INFO - Generating response...
+2026-01-12 15:59:49 - INFO - Generated response (length: 95 chars)
+  -> WRONG | found 10 cols | gold hit 0/3
+
+============================================================
+Query 14/16 - SEM2: What demographic variables are available?
+Gold columns: ['age', 'sex']
+============================================================
+[14/16] Method 1/7: Simple
+  -> PARTIAL | found 51 cols | gold hit 2/2
+[14/16] Method 2/7: Descriptions
+  -> PARTIAL | found 55 cols | gold hit 2/2
+[14/16] Method 3/7: Graph
+  -> PARTIAL | found 11 cols | gold hit 2/2
+[14/16] Method 4/7: Semantic RAG
+  -> PARTIAL | found 8 cols | gold hit 2/2
+[14/16] Method 5/7: Hybrid RAG
+  -> PARTIAL | found 9 cols | gold hit 2/2
+[14/16] Method 6/7: RRF Hybrid
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 195.28it/s]
+2026-01-12 15:59:49 - INFO - Generating response for prompt (length: 1187 chars)
+2026-01-12 15:59:49 - INFO - Applying chat template...
+2026-01-12 15:59:49 - INFO - Tokenizing input...
+2026-01-12 15:59:49 - INFO - Input tokens: 290
+2026-01-12 15:59:49 - INFO - Generating response...
+2026-01-12 15:59:50 - INFO - Generated response (length: 77 chars)
+  -> PARTIAL | found 8 cols | gold hit 2/2
+[14/16] Method 7/7: RRF Markov
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 182.92it/s]
+2026-01-12 15:59:50 - INFO - Generating response for prompt (length: 1145 chars)
+2026-01-12 15:59:50 - INFO - Applying chat template...
+2026-01-12 15:59:50 - INFO - Tokenizing input...
+2026-01-12 15:59:50 - INFO - Input tokens: 277
+2026-01-12 15:59:50 - INFO - Generating response...
+2026-01-12 15:59:51 - INFO - Generated response (length: 93 chars)
+2026-01-12 15:59:51 - INFO - Generating response for prompt (length: 1154 chars)
+2026-01-12 15:59:51 - INFO - Applying chat template...
+2026-01-12 15:59:51 - INFO - Tokenizing input...
+2026-01-12 15:59:51 - INFO - Input tokens: 398
+2026-01-12 15:59:51 - INFO - Generating response...
+2026-01-12 15:59:53 - INFO - Generated response (length: 145 chars)
+2026-01-12 15:59:53 - INFO - Generating response for prompt (length: 5920 chars)
+2026-01-12 15:59:53 - INFO - Applying chat template...
+2026-01-12 15:59:53 - INFO - Tokenizing input...
+2026-01-12 15:59:53 - INFO - Input tokens: 1444
+2026-01-12 15:59:53 - INFO - Generating response...
+2026-01-12 15:59:53 - INFO - Generated response (length: 7 chars)
+2026-01-12 15:59:53 - INFO - Generating response for prompt (length: 12702 chars)
+2026-01-12 15:59:53 - INFO - Applying chat template...
+2026-01-12 15:59:53 - INFO - Tokenizing input...
+2026-01-12 15:59:53 - INFO - Input tokens: 4156
+2026-01-12 15:59:53 - INFO - Generating response...
+2026-01-12 16:00:10 - INFO - Generated response (length: 944 chars)
+2026-01-12 16:00:10 - INFO - Generating response for prompt (length: 1306 chars)
+2026-01-12 16:00:10 - INFO - Applying chat template...
+2026-01-12 16:00:10 - INFO - Tokenizing input...
+2026-01-12 16:00:10 - INFO - Input tokens: 339
+2026-01-12 16:00:10 - INFO - Generating response...
+2026-01-12 16:00:11 - INFO - Generated response (length: 75 chars)
+2026-01-12 16:00:11 - INFO - Generating response for prompt (length: 1239 chars)
+2026-01-12 16:00:11 - INFO - Applying chat template...
+2026-01-12 16:00:11 - INFO - Tokenizing input...
+2026-01-12 16:00:11 - INFO - Input tokens: 321
+2026-01-12 16:00:11 - INFO - Generating response...
+2026-01-12 16:00:11 - INFO - Generated response (length: 23 chars)
+  -> WRONG | found 9 cols | gold hit 1/2
+
+============================================================
+Query 15/16 - SEM3: List all antibody test columns
+Gold columns: ['hbsag_anti', 'hbc_anti', 'hcv_anti']
+============================================================
+[15/16] Method 1/7: Simple
+  -> WRONG | found 10 cols | gold hit 0/3
+[15/16] Method 2/7: Descriptions
+  -> WRONG | found 1 cols | gold hit 0/3
+[15/16] Method 3/7: Graph
+  -> WRONG | found 2 cols | gold hit 0/3
+[15/16] Method 4/7: Semantic RAG
+  -> PARTIAL | found 7 cols | gold hit 3/3
+[15/16] Method 5/7: Hybrid RAG
+  -> WRONG | found 2 cols | gold hit 1/3
+[15/16] Method 6/7: RRF Hybrid
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 193.40it/s]
+2026-01-12 16:00:11 - INFO - Generating response for prompt (length: 1238 chars)
+2026-01-12 16:00:11 - INFO - Applying chat template...
+2026-01-12 16:00:11 - INFO - Tokenizing input...
+2026-01-12 16:00:11 - INFO - Input tokens: 310
+2026-01-12 16:00:11 - INFO - Generating response...
+2026-01-12 16:00:11 - INFO - Generated response (length: 7 chars)
+  -> WRONG | found 1 cols | gold hit 0/3
+[15/16] Method 7/7: RRF Markov
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 200.83it/s]
+2026-01-12 16:00:11 - INFO - Generating response for prompt (length: 1353 chars)
+2026-01-12 16:00:11 - INFO - Applying chat template...
+2026-01-12 16:00:11 - INFO - Tokenizing input...
+2026-01-12 16:00:11 - INFO - Input tokens: 362
+2026-01-12 16:00:11 - INFO - Generating response...
+2026-01-12 16:00:12 - INFO - Generated response (length: 61 chars)
+2026-01-12 16:00:12 - INFO - Generating response for prompt (length: 1171 chars)
+2026-01-12 16:00:12 - INFO - Applying chat template...
+2026-01-12 16:00:12 - INFO - Tokenizing input...
+2026-01-12 16:00:12 - INFO - Input tokens: 401
+2026-01-12 16:00:12 - INFO - Generating response...
+2026-01-12 16:00:13 - INFO - Generated response (length: 34 chars)
+2026-01-12 16:00:13 - INFO - Generating response for prompt (length: 5937 chars)
+2026-01-12 16:00:13 - INFO - Applying chat template...
+2026-01-12 16:00:13 - INFO - Tokenizing input...
+2026-01-12 16:00:13 - INFO - Input tokens: 1447
+2026-01-12 16:00:13 - INFO - Generating response...
+2026-01-12 16:00:13 - INFO - Generated response (length: 22 chars)
+2026-01-12 16:00:13 - INFO - Generating response for prompt (length: 12719 chars)
+2026-01-12 16:00:13 - INFO - Applying chat template...
+2026-01-12 16:00:13 - INFO - Tokenizing input...
+2026-01-12 16:00:13 - INFO - Input tokens: 4159
+2026-01-12 16:00:13 - INFO - Generating response...
+2026-01-12 16:00:16 - INFO - Generated response (length: 169 chars)
+2026-01-12 16:00:16 - INFO - Generating response for prompt (length: 1194 chars)
+2026-01-12 16:00:16 - INFO - Applying chat template...
+2026-01-12 16:00:16 - INFO - Tokenizing input...
+2026-01-12 16:00:16 - INFO - Input tokens: 301
+2026-01-12 16:00:16 - INFO - Generating response...
+2026-01-12 16:00:16 - INFO - Generated response (length: 14 chars)
+2026-01-12 16:00:16 - INFO - Generating response for prompt (length: 1194 chars)
+2026-01-12 16:00:16 - INFO - Applying chat template...
+2026-01-12 16:00:16 - INFO - Tokenizing input...
+2026-01-12 16:00:16 - INFO - Input tokens: 301
+2026-01-12 16:00:16 - INFO - Generating response...
+2026-01-12 16:00:16 - INFO - Generated response (length: 14 chars)
+  -> PARTIAL | found 6 cols | gold hit 3/3
+
+============================================================
+Query 16/16 - SEM4: What liver enzyme measurements are in the data?
+Gold columns: ['alt', 'ast', 'ggtp', 'phosphatase']
+============================================================
+[16/16] Method 1/7: Simple
+  -> WRONG | found 3 cols | gold hit 3/4
+[16/16] Method 2/7: Descriptions
+  -> WRONG | found 3 cols | gold hit 3/4
+[16/16] Method 3/7: Graph
+  -> PARTIAL | found 15 cols | gold hit 4/4
+[16/16] Method 4/7: Semantic RAG
+  -> WRONG | found 2 cols | gold hit 2/4
+[16/16] Method 5/7: Hybrid RAG
+  -> WRONG | found 2 cols | gold hit 2/4
+[16/16] Method 6/7: RRF Hybrid
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 195.65it/s]
+2026-01-12 16:00:16 - INFO - Generating response for prompt (length: 1206 chars)
+2026-01-12 16:00:16 - INFO - Applying chat template...
+2026-01-12 16:00:16 - INFO - Tokenizing input...
+2026-01-12 16:00:16 - INFO - Input tokens: 306
+2026-01-12 16:00:16 - INFO - Generating response...
+2026-01-12 16:00:16 - INFO - Generated response (length: 2 chars)
+  -> WRONG | found 0 cols | gold hit 0/4
+[16/16] Method 7/7: RRF Markov
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 197.49it/s]
+2026-01-12 16:00:16 - INFO - Generating response for prompt (length: 1186 chars)
+2026-01-12 16:00:16 - INFO - Applying chat template...
+2026-01-12 16:00:16 - INFO - Tokenizing input...
+2026-01-12 16:00:16 - INFO - Input tokens: 304
+2026-01-12 16:00:16 - INFO - Generating response...
+2026-01-12 16:00:17 - INFO - Generated response (length: 14 chars)
+  -> WRONG | found 2 cols | gold hit 2/4
+Risultati della Valutazione (Benchmark v3 - 16 queries)
+
+Classificazione delle Risposte
+
+| Modo | Corrette (Esatte) | Parziali (tutte gold + extra) | Sbagliate (manca almeno 1 gold) |
+|------|--------------------|-----------------------------|--------------------------------|
+| Simple | 0/16 (0.0%) | 7/16 (43.8%) | 9/16 (56.2%) |
+| Descriptions | 0/16 (0.0%) | 5/16 (31.2%) | 11/16 (68.8%) |
+| Graph | 0/16 (0.0%) | 6/16 (37.5%) | 10/16 (62.5%) |
+| Semantic RAG | 0/16 (0.0%) | 5/16 (31.2%) | 11/16 (68.8%) |
+| Hybrid RAG | 0/16 (0.0%) | 7/16 (43.8%) | 9/16 (56.2%) |
+| RRF Hybrid | 0/16 (0.0%) | 10/16 (62.5%) | 6/16 (37.5%) |
+| RRF Markov | 0/16 (0.0%) | 11/16 (68.8%) | 5/16 (31.2%) |
+
+Metriche Aggregate
+
+| Modo | Precision | Recall | F1 Score | Jaccard | Exact Match Rate |
+|------|-----------|--------|----------|---------|------------------|
+| Simple | 0.1302 | 0.5385 | 0.1293 | 0.0908 | 0.0000 |
+| Descriptions | 0.1665 | 0.4135 | 0.1413 | 0.1092 | 0.0000 |
+| Graph | 0.0552 | 0.4500 | 0.0929 | 0.0535 | 0.0000 |
+| Semantic RAG | 0.1671 | 0.4417 | 0.2015 | 0.1305 | 0.0000 |
+| Hybrid RAG | 0.2545 | 0.5938 | 0.3052 | 0.2052 | 0.0000 |
+| RRF Hybrid | 0.2520 | 0.7458 | 0.3295 | 0.2235 | 0.0000 |
+| RRF Markov | 0.2510 | 0.8021 | 0.3320 | 0.2175 | 0.0000 |
+
+Leakage Metrics (Data Leakage Avoidance)
+
+| Modo | Avg Leakage Count | Avg Leakage Rate | Leakage Avoidance |
+|------|-------------------|------------------|-------------------|
+| Simple | 5.50 | 0.0951 | 0.5335 |
+| Descriptions | 5.70 | 0.1298 | 0.3885 |
+| Graph | 4.80 | 0.1643 | 0.5397 |
+| Semantic RAG | 0.70 | 0.0756 | 0.8580 |
+| Hybrid RAG | 3.30 | 0.3779 | 0.4501 |
+| RRF Hybrid | 0.40 | 0.0450 | 0.8743 |
+| RRF Markov | 0.90 | 0.0900 | 0.8462 |
+
+Saved: /share/malelab/calusalRag/CausalAgentRag/outputs/benchmark_v3_results.json
+Saved: /share/malelab/calusalRag/CausalAgentRag/outputs/benchmark_v3_report.txt

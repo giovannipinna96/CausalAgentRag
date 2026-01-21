@@ -1,0 +1,119 @@
+{
+  "demo::simple::Which columns should I use to predict cirrhosis?": {
+    "selected_columns": [
+      "alcoholism",
+      "vh_amn",
+      "hepatotoxic",
+      "THepatitis",
+      "transfusion",
+      "choledocholithotomy",
+      "RHepatitis",
+      "hospital"
+    ],
+    "raw_response": "{\"selected_columns\": [\"cirrhosis\", \"alcoholism\", \"vh_amn\", \"hepatotoxic\", \"THepatitis\", \"transfusion\", \"choledocholithotomy\", \"RHepatitis\"]}"
+  },
+  "demo::desc::Which columns should I use to predict cirrhosis?": {
+    "selected_columns": [
+      "age",
+      "choledocholithotomy",
+      "fibrosis",
+      "transfusion",
+      "upper_pain",
+      "jaundice",
+      "alcoholism",
+      "vh_amn"
+    ],
+    "raw_response": "{\"selected_columns\": [\"cirrhosis\", \"age\", \"choledocholithotomy\", \"fibrosis\", \"transfusion\", \"steatosis\", \"upper_pain\", \"jaundice\"]}"
+  },
+  "demo::graph::Which columns should I use to predict cirrhosis?": {
+    "selected_columns": [
+      "alcoholism",
+      "vh_amn",
+      "hepatotoxic",
+      "fibrosis",
+      "diabetes",
+      "obesity",
+      "THepatitis",
+      "hospital"
+    ],
+    "raw_response": "{\"selected_columns\": [\"alcoholism\", \"vh_amn\", \"hepatotoxic\", \"fibrosis\", \"diabetes\", \"obesity\", \"steatosis\", \"cirrhosis\"]}"
+  },
+  "demo::simple::What is the effect of alcoholism on liver disease?": {
+    "selected_columns": [
+      "ChHepatitis",
+      "Cirrhosis",
+      "ESR",
+      "Hyperbilirubinemia",
+      "PBC",
+      "RHepatitis",
+      "Steatosis",
+      "THepatitis"
+    ],
+    "raw_response": "{\"selected_columns\": [\"alcoholism\", \"hepatitis\", \"cirrhosis\", \"cholelithiasis\", \"ascites\", \"jaundice\", \"albumin\", \"alanine_a\")]"
+  },
+  "demo::desc::What is the effect of alcoholism on liver disease?": {
+    "selected_columns": [
+      "alcoholism",
+      "transfusion",
+      "choledocholithotomy",
+      "fibrosis",
+      "pain_ruq",
+      "ascites",
+      "albumin",
+      "vh_amn"
+    ],
+    "raw_response": "{\"selected_columns\": [\"alcoholism\", \"transfusion\", \"choledocholithotomy\", \"fibrosis\", \"hyperbilirubinemia\", \"pain_ruq\", \"ascites\", \"albumin\"]}"
+  },
+  "demo::graph::What is the effect of alcoholism on liver disease?": {
+    "selected_columns": [
+      "alcoholism",
+      "THepatitis",
+      "fibrosis",
+      "encephalopathy",
+      "ascites",
+      "vh_amn",
+      "hepatotoxic",
+      "hospital"
+    ],
+    "raw_response": "{\"selected_columns\": [\"alcoholism\", \"THepatitis\", \"steatosis\", \"fibrosis\", \"cirrhosis\", \"hyperbilirubinemia\", \"encephalopathy\", \"ascites\"]}"
+  },
+  "demo::simple::Find columns related to hepatitis B markers": {
+    "selected_columns": [
+      "vh_amn",
+      "THepatitis",
+      "RHepatitis",
+      "hepatotoxic",
+      "choledocholithotomy",
+      "fibrosis",
+      "ascites",
+      "alcoholism"
+    ],
+    "raw_response": "{\"selected_columns\": [\"vh_amn\", \"THepatitis\", \"RHepatitis\", \"hepatotoxic\", \"choledocholithotomy\", \"steatosis\", \"fibrosis\", \"ascites\"]}"
+  },
+  "demo::desc::Find columns related to hepatitis B markers": {
+    "selected_columns": [
+      "vh_amn",
+      "THepatitis",
+      "RHepatitis",
+      "choledocholithotomy",
+      "transfusion",
+      "hepatotoxic",
+      "alcoholism",
+      "hospital"
+    ],
+    "raw_response": "{\"selected_columns\": [\"vh_amn\", \"THepatitis\", \"RHepatitis\", \"choledocholithotomy\", \"transfusion\", \"hepatotoxic\", \"steatosis\"]}"
+  },
+  "demo::graph::Find columns related to hepatitis B markers": {
+    "selected_columns": [
+      "THepatitis",
+      "ChHepatitis",
+      "RHepatitis",
+      "PBC",
+      "fibrosis",
+      "Cirrhosis",
+      "Hyperbilirubinemia",
+      "alcoholism"
+    ],
+    "raw_response": "{\"selected_columns\": [\"THepatitis\", \"ChHepatitis\", \"RHepatitis\", \"PBC\", \"fibrosis\", \"Cirrhosis\", \"Hyperbilirubinemia\", \"RHepatitis\"]}"
+  }
+}

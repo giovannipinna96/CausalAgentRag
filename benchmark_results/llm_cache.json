@@ -1,0 +1,722 @@
+{
+  "bench::simple::I want to predict which patients will develop cirr": {
+    "selected_columns": [
+      "Cirrhosis",
+      "age",
+      "sex",
+      "alcoholism",
+      "transfusion",
+      "choledocholithotomy",
+      "fibrosis",
+      "jaundice",
+      "ascites",
+      "vh_amn"
+    ],
+    "raw_response": "{\"selected_columns\": [\"Cirrhosis\", \"age\", \"sex\", \"alcoholism\", \"transfusion\", \"choledocholithotomy\", \"steatosis\", \"fibrosis\", \"jaundice\", \"ascites\"]}"
+  },
+  "bench::desc::I want to predict which patients will develop cirr": {
+    "selected_columns": [
+      "age",
+      "cholesterol",
+      "ast",
+      "bilirubin",
+      "transfusion",
+      "fibrosis",
+      "jaundice",
+      "platelet",
+      "upper_pain",
+      "alcoholism"
+    ],
+    "raw_response": "{\"selected_columns\": [\"cirrhosis\", \"age\", \"cholesterol\", \"ast\", \"bilirubin\", \"transfusion\", \"fibrosis\", \"jaundice\", \"platelet\", \"upper_pain\"]}"
+  },
+  "bench::graph::I want to predict which patients will develop cirr": {
+    "selected_columns": [
+      "alcoholism",
+      "THepatitis",
+      "fibrosis",
+      "Cirrhosis",
+      "diabetes",
+      "obesity",
+      "vh_amn",
+      "hepatotoxic",
+      "hospital",
+      "surgery"
+    ],
+    "raw_response": "{\"selected_columns\": [\"alcoholism\", \"THepatitis\", \"fibrosis\", \"Cirrhosis\", \"steatosis\", \"cirrhosis\", \"hyperbilirubinemia\", \"fibrosis\", \"diabetes\", \"obesity\"]}"
+  },
+  "bench::simple::Build a model to identify patients at risk for chr": {
+    "selected_columns": [
+      "vh_amn",
+      "transfusion",
+      "choledocholithotomy",
+      "fibrosis",
+      "RHepatitis",
+      "jaundice",
+      "albumin",
+      "edge",
+      "irregular_liver",
+      "anorexia"
+    ],
+    "raw_response": "{\"selected_columns\": [\"vh_amn\", \"transfusion\", \"choledocholithotomy\", \"fibrosis\", \"RHepatitis\", \"jaundice\", \"albumin\", \"edge\", \"irregular_liver\", \"anorexia\"]}"
+  },
+  "bench::desc::Build a model to identify patients at risk for chr": {
+    "selected_columns": [
+      "vh_amn",
+      "fibrosis",
+      "transfusion",
+      "choledocholithotomy",
+      "cholesterol",
+      "jaundice",
+      "ast",
+      "albumin",
+      "alcoholism",
+      "hepatotoxic"
+    ],
+    "raw_response": "{\"selected_columns\": [\"vh_amn\", \"fibrosis\", \"transfusion\", \"choledocholithotomy\", \"cholesterol\", \"jaundice\", \"ast\", \"albumin\", \"alanine aminotransferase\", \"SGPT\"]}"
+  },
+  "bench::graph::Build a model to identify patients at risk for chr": {
+    "selected_columns": [
+      "alcoholism",
+      "vh_amn",
+      "hepatotoxic",
+      "fibrosis",
+      "diabetes",
+      "obesity",
+      "transfusion",
+      "THepatitis",
+      "hospital",
+      "surgery"
+    ],
+    "raw_response": "{\"selected_columns\": [\"alcoholism\", \"vh_amn\", \"hepatotoxic\", \"fibrosis\", \"diabetes\", \"obesity\", \"steatosis\", \"cirrhosis\", \"hyperbilirubinemia\", \"transfusion\"]}"
+  },
+  "bench::simple::Predict which patients will develop fatty liver di": {
+    "selected_columns": [
+      "alcoholism",
+      "vh_amn",
+      "hepatotoxic",
+      "THepatitis",
+      "hospital",
+      "injections",
+      "transfusion",
+      "choledocholithotomy",
+      "obesity",
+      "diabetes"
+    ],
+    "raw_response": "{\"selected_columns\": [\"alcoholism\", \"vh_amn\", \"hepatotoxic\", \"THepatitis\", \"hospital\", \"injections\", \"transfusion\", \"choledocholithotomy\", \"obesity\", \"diabetes\"]}"
+  },
+  "bench::desc::Predict which patients will develop fatty liver di": {
+    "selected_columns": [
+      "cholesterol",
+      "ast",
+      "bilirubin",
+      "transfusion",
+      "fibrosis",
+      "jaundice",
+      "platelet",
+      "upper_pain",
+      "albumin",
+      "alcoholism"
+    ],
+    "raw_response": "{\"selected_columns\": [\"cholesterol\", \"ast\", \"bilirubin\", \"transfusion\", \"fibrosis\", \"jaundice\", \"platelet\", \"upper_pain\", \"alanine aminotransferase\", \"albumin\"]}"
+  },
+  "bench::graph::Predict which patients will develop fatty liver di": {
+    "selected_columns": [
+      "alcoholism",
+      "THepatitis",
+      "fibrosis",
+      "Steatosis",
+      "Cirrhosis",
+      "cholesterol",
+      "ast",
+      "vh_amn",
+      "hepatotoxic",
+      "hospital"
+    ],
+    "raw_response": "{\"selected_columns\": [\"alcoholism\", \"THepatitis\", \"fibrosis\", \"Steatosis\", \"Cirrhosis\", \"hyperbilirubinemia\", \"cholesterol\", \"ast\", \"GGTP\", \"ALT\"]}"
+  },
+  "bench::simple::I need to forecast elevated bilirubin levels in pa": {
+    "selected_columns": [
+      "bilirubin",
+      "jaundice",
+      "albumin",
+      "ascites",
+      "hepatomegaly",
+      "spiders",
+      "anorexia",
+      "nausea",
+      "alcoholism",
+      "vh_amn"
+    ],
+    "raw_response": "{\"selected_columns\": [\"bilirubin\", \"jaundice\", \"albumin\", \"ascites\", \"hepatomegaly\", \"icterus\", \"spiders\", \"anorexia\", \"nausea\", \"jaundice\"]}"
+  },
+  "bench::desc::I need to forecast elevated bilirubin levels in pa": {
+    "selected_columns": [
+      "bilirubin",
+      "jaundice",
+      "alcoholism",
+      "vh_amn",
+      "hepatotoxic",
+      "THepatitis",
+      "hospital",
+      "surgery",
+      "gallstones",
+      "choledocholithotomy"
+    ],
+    "raw_response": "{\"selected_columns\": [\"hyperbilirubinemia\", \"bilirubin\", \"jaundice\"]}"
+  },
+  "bench::graph::I need to forecast elevated bilirubin levels in pa": {
+    "selected_columns": [
+      "THepatitis",
+      "RHepatitis",
+      "bilirubin",
+      "pressure_ruq",
+      "phosphatase",
+      "inr",
+      "jaundice",
+      "fibrosis",
+      "alcoholism",
+      "vh_amn"
+    ],
+    "raw_response": "{\"selected_columns\": [\"THepatitis\", \"RHepatitis\", \"bilirubin\", \"pressure_ruq\", \"phosphatase\", \"inr\", \"jaundice\", \"steatosis\", \"fibrosis\", \"hyperbilirubinemia\"]}"
+  },
+  "bench::simple::Predict toxic hepatitis occurrence": {
+    "selected_columns": [
+      "THepatitis",
+      "age",
+      "sex",
+      "jaundice",
+      "albumin",
+      "ascites",
+      "anorexia",
+      "spiders",
+      "bilirubin",
+      "alcoholism"
+    ],
+    "raw_response": "{\"selected_columns\": [\"THepatitis\", \"age\", \"sex\", \"jaundice\", \"albumin\", \"ascites\", \"icterus\", \"anorexia\", \"spiders\", \"bilirubin\"]}"
+  },
+  "bench::desc::Predict toxic hepatitis occurrence": {
+    "selected_columns": [
+      "THepatitis",
+      "age",
+      "fibrosis",
+      "cholesterol",
+      "jaundice",
+      "albumin",
+      "ast",
+      "bilirubin",
+      "inr",
+      "ascites"
+    ],
+    "raw_response": "{\"selected_columns\": [\"THepatitis\", \"age\", \"fibrosis\", \"cholesterol\", \"jaundice\", \"albumin\", \"ast\", \"bilirubin\", \"inr\", \"ascites\"]}"
+  },
+  "bench::graph::Predict toxic hepatitis occurrence": {
+    "selected_columns": [
+      "THepatitis",
+      "RHepatitis",
+      "fibrosis",
+      "Cirrhosis",
+      "alcoholism",
+      "cholesterol",
+      "vh_amn",
+      "hepatotoxic",
+      "hospital",
+      "surgery"
+    ],
+    "raw_response": "{\"selected_columns\": [\"THepatitis\", \"RHepatitis\", \"fibrosis\", \"Cirrhosis\", \"steatosis\", \"hyperbilirubinemia\", \"pbc\", \"alcoholism\", \"cholesterol\", \"fibrosis\"]}"
+  },
+  "bench::simple::Build a classifier for primary biliary cholangitis": {
+    "selected_columns": [
+      "alcoholism",
+      "transfusion",
+      "choledocholithotomy",
+      "fibrosis",
+      "age",
+      "fatigue",
+      "ascites",
+      "jaundice",
+      "albumin",
+      "anorexia"
+    ],
+    "raw_response": "{\"selected_columns\": [\"alcoholism\", \"transfusion\", \"choledocholithotomy\", \"fibrosis\", \"age\", \"fatigue\", \"ascites\", \"jaundice\", \"albumin\", \"anorexia\"]}"
+  },
+  "bench::desc::Build a classifier for primary biliary cholangitis": {
+    "selected_columns": [
+      "PBC",
+      "age",
+      "choledocholithotomy",
+      "fibrosis",
+      "cholesterol",
+      "ast",
+      "bilirubin",
+      "transfusion",
+      "alcoholism",
+      "vh_amn"
+    ],
+    "raw_response": "{\"selected_columns\": [\"PBC\", \"age\", \"choledocholithotomy\", \"fibrosis\", \"cholesterol\", \"ast\", \"bilirubin\", \"transfusion\", \"alanine aminotransferase\", \"platelet count\"]}"
+  },
+  "bench::graph::Build a classifier for primary biliary cholangitis": {
+    "selected_columns": [
+      "alcoholism",
+      "vh_amn",
+      "hepatotoxic",
+      "THepatitis",
+      "fibrosis",
+      "diabetes",
+      "obesity",
+      "hospital",
+      "surgery",
+      "gallstones"
+    ],
+    "raw_response": "{\"selected_columns\": [\"alcoholism\", \"vh_amn\", \"hepatotoxic\", \"THepatitis\", \"fibrosis\", \"diabetes\", \"obesity\", \"steatosis\", \"cirrhosis\", \"hyperbilirubinemia\"]}"
+  },
+  "bench::simple::Identify patients likely to have encephalopathy": {
+    "selected_columns": [
+      "encephalopathy",
+      "hepatomegaly",
+      "jaundice",
+      "ascites",
+      "spiders",
+      "anorexia",
+      "nausea",
+      "palms",
+      "hbc_anti",
+      "alcoholism"
+    ],
+    "raw_response": "{\"selected_columns\": [\"encephalopathy\", \"hepatomegaly\", \"jaundice\", \"ascites\", \"icterus\", \"spiders\", \"anorexia\", \"nausea\", \"palms\", \"hbc_anti\"]}"
+  },
+  "bench::desc::Identify patients likely to have encephalopathy": {
+    "selected_columns": [
+      "encephalopathy",
+      "alcoholism",
+      "fibrosis",
+      "cholesterol",
+      "jaundice",
+      "ascites",
+      "albumin",
+      "ast",
+      "bilirubin",
+      "vh_amn"
+    ],
+    "raw_response": "{\"selected_columns\": [\"encephalopathy\", \"alcoholism\", \"fibrosis\", \"cholesterol\", \"jaundice\", \"ascites\", \"albumin\", \"ast\", \"bilirubin\"]}"
+  },
+  "bench::graph::Identify patients likely to have encephalopathy": {
+    "selected_columns": [
+      "encephalopathy",
+      "THepatitis",
+      "RHepatitis",
+      "fibrosis",
+      "diabetes",
+      "obesity",
+      "transfusion",
+      "alcoholism",
+      "vh_amn",
+      "hepatotoxic"
+    ],
+    "raw_response": "{\"selected_columns\": [\"encephalopathy\", \"THepatitis\", \"RHepatitis\", \"fibrosis\", \"diabetes\", \"obesity\", \"steatosis\", \"cirrhosis\", \"hyperbilirubinemia\", \"transfusion\"]}"
+  },
+  "bench::simple::Predict bleeding risk in liver patients": {
+    "selected_columns": [
+      "alcoholism",
+      "transfusion",
+      "fibrosis",
+      "cholesterol",
+      "jaundice",
+      "albumin",
+      "ascites",
+      "anorexia",
+      "spiders",
+      "vh_amn"
+    ],
+    "raw_response": "{\"selected_columns\": [\"alcoholism\", \"transfusion\", \"fibrosis\", \"cholesterol\", \"jaundice\", \"albumin\", \"ascites\", \"icterus\", \"anorexia\", \"spiders\"]}"
+  },
+  "bench::desc::Predict bleeding risk in liver patients": {
+    "selected_columns": [
+      "alcoholism",
+      "fibrosis",
+      "cholesterol",
+      "ast",
+      "bilirubin",
+      "transfusion",
+      "jaundice",
+      "albumin",
+      "pain_ruq",
+      "ascites"
+    ],
+    "raw_response": "{\"selected_columns\": [\"alcoholism\", \"fibrosis\", \"cholesterol\", \"ast\", \"bilirubin\", \"transfusion\", \"jaundice\", \"albumin\", \"pain_ruq\", \"ascites\"]}"
+  },
+  "bench::graph::Predict bleeding risk in liver patients": {
+    "selected_columns": [
+      "alcoholism",
+      "vh_amn",
+      "fibrosis",
+      "diabetes",
+      "obesity",
+      "transfusion",
+      "alcohol",
+      "hepatotoxic",
+      "THepatitis",
+      "hospital"
+    ],
+    "raw_response": "{\"selected_columns\": [\"alcoholism\", \"vh_amn\", \"fibrosis\", \"diabetes\", \"obesity\", \"steatosis\", \"cirrhosis\", \"hyperbilirubinemia\", \"transfusion\", \"alcohol\"]}"
+  },
+  "bench::simple::Forecast which patients will develop ascites": {
+    "selected_columns": [
+      "ascites",
+      "edema",
+      "platelet",
+      "inr",
+      "jaundice",
+      "albumin",
+      "edge",
+      "irregular_liver",
+      "hbc_anti",
+      "hcv_anti"
+    ],
+    "raw_response": "{\"selected_columns\": [\"ascites\", \"edema\", \"platelet\", \"inr\", \"jaundice\", \"albumin\", \"edge\", \"irregular_liver\", \"hbc_anti\", \"hcv_anti\"]}"
+  },
+  "bench::desc::Forecast which patients will develop ascites": {
+    "selected_columns": [
+      "ascites",
+      "cholesterol",
+      "ast",
+      "bilirubin",
+      "albumin",
+      "fibrosis",
+      "jaundice",
+      "platelet",
+      "inr",
+      "upper_pain"
+    ],
+    "raw_response": "{\"selected_columns\": [\"ascites\", \"cholesterol\", \"ast\", \"bilirubin\", \"albumin\", \"fibrosis\", \"jaundice\", \"platelet\", \"inr\", \"upper_pain\"]}"
+  },
+  "bench::graph::Forecast which patients will develop ascites": {
+    "selected_columns": [
+      "ascites",
+      "THepatitis",
+      "RHepatitis",
+      "fibrosis",
+      "PBC",
+      "triglycerides",
+      "alcoholism",
+      "vh_amn",
+      "hepatotoxic",
+      "hospital"
+    ],
+    "raw_response": "{\"selected_columns\": [\"ascites\", \"THepatitis\", \"RHepatitis\", \"fibrosis\", \"PBC\", \"steatosis\", \"cirrhosis\", \"hyperbilirubinemia\", \"triglycerides\", \"RHepatitis\"]}"
+  },
+  "bench::simple::Predict reactive hepatitis in patients": {
+    "selected_columns": [
+      "vh_amn",
+      "hepatotoxic",
+      "transfusion",
+      "choledocholithotomy",
+      "fibrosis",
+      "diabetes",
+      "obesity",
+      "alcoholism",
+      "THepatitis",
+      "hospital"
+    ],
+    "raw_response": "{\"selected_columns\": [\"vh_amn\", \"hepatotoxic\", \"transfusion\", \"choledocholithotomy\", \"fibrosis\", \"diabetes\", \"obesity\", \"steatosis\", \"cirrhosis\", \"hyperbilirubinemia\"]}"
+  },
+  "bench::desc::Predict reactive hepatitis in patients": {
+    "selected_columns": [
+      "RHepatitis",
+      "age",
+      "choledocholithotomy",
+      "fibrosis",
+      "upper_pain",
+      "pain_ruq",
+      "ascites",
+      "jaundice",
+      "albumin",
+      "anorexia"
+    ],
+    "raw_response": "{\"selected_columns\": [\"RHepatitis\", \"age\", \"choledocholithotomy\", \"fibrosis\", \"upper_pain\", \"pain_ruq\", \"ascites\", \"jaundice\", \"albumin\", \"anorexia\"]}"
+  },
+  "bench::graph::Predict reactive hepatitis in patients": {
+    "selected_columns": [
+      "RHepatitis",
+      "fibrosis",
+      "diabetes",
+      "obesity",
+      "transfusion",
+      "alcoholism",
+      "choledocholithotomy",
+      "vh_amn",
+      "hepatotoxic",
+      "THepatitis"
+    ],
+    "raw_response": "{\"selected_columns\": [\"RHepatitis\", \"fibrosis\", \"diabetes\", \"obesity\", \"steatosis\", \"cirrhosis\", \"hyperbilirubinemia\", \"transfusion\", \"alcoholism\", \"choledocholithotomy\"]}"
+  },
+  "bench::simple::Build a model to predict fibrosis progression": {
+    "selected_columns": [
+      "fibrosis",
+      "age",
+      "sex",
+      "cholesterol",
+      "albumin",
+      "bilirubin",
+      "transfusion",
+      "ast",
+      "platelet",
+      "inr"
+    ],
+    "raw_response": "{\"selected_columns\": [\"fibrosis\", \"age\", \"sex\", \"cholesterol\", \"albumin\", \"bilirubin\", \"transfusion\", \"ast\", \"platelet\", \"inr\"]}"
+  },
+  "bench::desc::Build a model to predict fibrosis progression": {
+    "selected_columns": [
+      "fibrosis",
+      "age",
+      "cholesterol",
+      "ast",
+      "bilirubin",
+      "albumin",
+      "transfusion",
+      "platelet",
+      "inr",
+      "alcoholism"
+    ],
+    "raw_response": "{\"selected_columns\": [\"fibrosis\", \"age\", \"cholesterol\", \"ast\", \"bilirubin\", \"albumin\", \"transfusion\", \"alanine\", \"platelet\", \"inr\"]}"
+  },
+  "bench::graph::Build a model to predict fibrosis progression": {
+    "selected_columns": [
+      "fibrosis",
+      "THepatitis",
+      "RHepatitis",
+      "transfusion",
+      "alcoholism",
+      "choledocholithotomy",
+      "hepatotoxic",
+      "fatigue",
+      "jaundice",
+      "vh_amn"
+    ],
+    "raw_response": "{\"selected_columns\": [\"fibrosis\", \"THepatitis\", \"RHepatitis\", \"steatosis\", \"cirrhosis\", \"hyperbilirubinemia\", \"transfusion\", \"alcoholism\", \"choledocholithotomy\", \"injection_exposure\", \"blood_transfusion\", \"primary_biliary_cholangitis\", \"hepatotoxic\", \"upper_abdominal_pain\", \"fatigue\", \"jaundice\", \"jaundice\", \"jaundice\"]}"
+  },
+  "bench::simple::Predict hyperbilirubinemia in patients": {
+    "selected_columns": [
+      "jaundice",
+      "alcoholism",
+      "vh_amn",
+      "hepatotoxic",
+      "THepatitis",
+      "hospital",
+      "surgery",
+      "gallstones",
+      "choledocholithotomy",
+      "injections"
+    ],
+    "raw_response": "{\"selected_columns\": [\"hyperbilirubinemia\", \"jaundice\"]}"
+  },
+  "bench::desc::Predict hyperbilirubinemia in patients": {
+    "selected_columns": [
+      "age",
+      "fibrosis",
+      "cholesterol",
+      "ast",
+      "bilirubin",
+      "jaundice",
+      "albumin",
+      "pain_ruq",
+      "transfusion",
+      "alcoholism"
+    ],
+    "raw_response": "{\"selected_columns\": [\"hyperbilirubinemia\", \"age\", \"fibrosis\", \"cholesterol\", \"ast\", \"bilirubin\", \"jaundice\", \"albumin\", \"pain_ruq\", \"transfusion\"]}"
+  },
+  "bench::graph::Predict hyperbilirubinemia in patients": {
+    "selected_columns": [
+      "THepatitis",
+      "RHepatitis",
+      "fibrosis",
+      "cholesterol",
+      "ast",
+      "albumin",
+      "platelet",
+      "inr",
+      "alcoholism",
+      "vh_amn"
+    ],
+    "raw_response": "{\"selected_columns\": [\"THepatitis\", \"RHepatitis\", \"fibrosis\", \"hyperbilirubinemia\", \"cholesterol\", \"ast\", \"GGT\", \"albumin\", \"platelet\", \"inr\"]}"
+  },
+  "bench::simple::Show me all hepatitis-related columns in the datas": {
+    "selected_columns": [
+      "THepatitis",
+      "RHepatitis",
+      "alcoholism",
+      "vh_amn",
+      "hepatotoxic",
+      "hospital",
+      "surgery",
+      "gallstones",
+      "choledocholithotomy",
+      "injections"
+    ],
+    "raw_response": "{\"selected_columns\": [\"THepatitis\", \"RHepatitis\", \"Hepatomegaly\", \"Jaundice\", \"Hepatalgia\", \"Ascites\", \"Spleen\", \"Alb\", \"Edge\", \"Irregular_liver\"]}"
+  },
+  "bench::desc::Show me all hepatitis-related columns in the datas": {
+    "selected_columns": [
+      "vh_amn",
+      "THepatitis",
+      "RHepatitis",
+      "hepatotoxic",
+      "fibrosis",
+      "choledocholithotomy",
+      "transfusion",
+      "upper_pain",
+      "alcoholism",
+      "hospital"
+    ],
+    "raw_response": "{\"selected_columns\": [\"vh_amn\", \"THepatitis\", \"RHepatitis\", \"hepatotoxic\", \"fibrosis\", \"choledocholithotomy\", \"transfusion\", \"steatosis\", \"upper_pain\"]}"
+  },
+  "bench::graph::Show me all hepatitis-related columns in the datas": {
+    "selected_columns": [
+      "vh_amn",
+      "THepatitis",
+      "RHepatitis",
+      "fibrosis",
+      "Cirrhosis",
+      "Steatosis",
+      "PBC",
+      "alcoholism",
+      "choledocholithotomy",
+      "hepatotoxic"
+    ],
+    "raw_response": "{\"selected_columns\": [\"vh_amn\", \"THepatitis\", \"RHepatitis\", \"fibrosis\", \"Cirrhosis\", \"Steatosis\", \"PBC\", \"hyperbilirubinemia\", \"alcoholism\", \"choledocholithotomy\"]}"
+  },
+  "bench::simple::What demographic variables are available?": {
+    "selected_columns": [
+      "sex",
+      "age",
+      "PBC",
+      "fibrosis",
+      "diabetes",
+      "obesity",
+      "Steatosis",
+      "Cirrhosis",
+      "Hyperbilirubinemia",
+      "triglycerides"
+    ],
+    "raw_response": "{\"selected_columns\": [\"sex\", \"age\", \"PBC\", \"fibrosis\", \"diabetes\", \"obesity\", \"Steatosis\", \"Cirrhosis\", \"Hyperbilirubinemia\", \"triglycerides\"]}"
+  },
+  "bench::desc::What demographic variables are available?": {
+    "selected_columns": [
+      "sex",
+      "age",
+      "fibrosis",
+      "diabetes",
+      "obesity",
+      "triglycerides",
+      "RHepatitis",
+      "alcoholism",
+      "vh_amn",
+      "hepatotoxic"
+    ],
+    "raw_response": "{\"selected_columns\": [\"sex\", \"age\", \"fibrosis\", \"diabetes\", \"obesity\", \"steatosis\", \"cirrhosis\", \"hyperbilirubinemia\", \"triglycerides\", \"RHepatitis\"]}"
+  },
+  "bench::graph::What demographic variables are available?": {
+    "selected_columns": [
+      "sex",
+      "age",
+      "PBC",
+      "fibrosis",
+      "diabetes",
+      "obesity",
+      "Steatosis",
+      "Cirrhosis",
+      "Hyperbilirubinemia",
+      "RHepatitis"
+    ],
+    "raw_response": "{\"selected_columns\": [\"sex\", \"age\", \"PBC\", \"fibrosis\", \"diabetes\", \"obesity\", \"Steatosis\", \"Cirrhosis\", \"Hyperbilirubinemia\", \"RHepatitis\"]}"
+  },
+  "bench::simple::List all antibody test columns": {
+    "selected_columns": [
+      "vh_amn",
+      "THepatitis",
+      "RHepatitis",
+      "jaundice",
+      "hepatomegaly",
+      "hepatalgia",
+      "ascites",
+      "spiders",
+      "anorexia",
+      "alcoholism"
+    ],
+    "raw_response": "{\"selected_columns\": [\"vh_amn\", \"THepatitis\", \"RHepatitis\", \"jaundice\", \"hepatomegaly\", \"hepatalgia\", \"ascites\", \"spiders\", \"icterus\", \"anorexia\"]}"
+  },
+  "bench::desc::List all antibody test columns": {
+    "selected_columns": [
+      "hbsag",
+      "hbsag_anti",
+      "ama",
+      "ast",
+      "alt",
+      "cholesterol",
+      "albumin",
+      "bilirubin",
+      "alcoholism",
+      "vh_amn"
+    ],
+    "raw_response": "{\"selected_columns\": [\"hbsag\", \"hbsag_anti\", \"ama\", \"ast\", \"alt\", \"GGTP\", \"cholesterol\", \"albumin\", \"bilirubin\"]}"
+  },
+  "bench::graph::List all antibody test columns": {
+    "selected_columns": [
+      "THepatitis",
+      "RHepatitis",
+      "fibrosis",
+      "Cirrhosis",
+      "jaundice",
+      "hepatomegaly",
+      "encephalopathy",
+      "ascites",
+      "alcoholism",
+      "vh_amn"
+    ],
+    "raw_response": "{\"selected_columns\": [\"THepatitis\", \"RHepatitis\", \"fibrosis\", \"Cirrhosis\", \"steatosis\", \"hyperbilirubinemia\", \"jaundice\", \"hepatomegaly\", \"encephalopathy\", \"ascites\"]}"
+  },
+  "bench::simple::What liver enzyme measurements are in the data?": {
+    "selected_columns": [
+      "alt",
+      "ast",
+      "ggtp",
+      "amylase",
+      "cholesterol",
+      "albumin",
+      "bilirubin",
+      "alcoholism",
+      "vh_amn",
+      "hepatotoxic"
+    ],
+    "raw_response": "{\"selected_columns\": [\"alt\", \"ast\", \"ggtp\", \"amylase\", \"cholesterol\", \"albumin\", \"bilirubin\", \"alanine_aminotransferase\", \"aspartate_aminotransferase\", \"gamma-glutamyl_transferase\"]}"
+  },
+  "bench::desc::What liver enzyme measurements are in the data?": {
+    "selected_columns": [
+      "alt",
+      "ast",
+      "alcoholism",
+      "vh_amn",
+      "hepatotoxic",
+      "THepatitis",
+      "hospital",
+      "surgery",
+      "gallstones",
+      "choledocholithotomy"
+    ],
+    "raw_response": "{\"selected_columns\": [\"alt\", \"ast\", \"GGT\", \"ALP\", \"SGPT\", \"SGOT\", \"ALB\", \"AST\", \"ALT\", \"GGT\"]}"
+  },
+  "bench::graph::What liver enzyme measurements are in the data?": {
+    "selected_columns": [
+      "alt",
+      "ast",
+      "alcoholism",
+      "vh_amn",
+      "hepatotoxic",
+      "THepatitis",
+      "hospital",
+      "surgery",
+      "gallstones",
+      "choledocholithotomy"
+    ],
+    "raw_response": "{\"selected_columns\": [\"alt\", \"ast\", \"GGT\", \"ALP\", \"AST\", \"ALT\"]}"
+  }
+}
